@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/23 01:32:15 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/23 02:06:55 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,25 @@ int main()
 	printf("Creating an array of size 2000\n");
 	array = new_array(signed_int, 2000);
 	i = get_array_index(array, 0);
-	printf("index 0 of 2000 : %p\n", i);
+	printf("index 0 of 1999 : %p\n", i);
 	*(i) = 10;
 	i = get_array_index(array, 1);
-	printf("index 1 of 2000 : %p\n", i);
+	printf("index 1 of 1999 : %p\n", i);
 	*(i) = 20;
 	i = get_array_index(array, 2000);
-	printf("index 2000 of 2000 : %p\n", i);
+	printf("index 2000 of 1999 : %p\n", i);
 	i = get_array_index(array, 40000);
-	printf("index 40000 of 2000 : %p\n", i);
+	printf("index 40000 of 1999 : %p\n", i);
 	i = get_array_index(array, 0);
-	printf("index 0 of 2000 equals : %i\n", *i);
-	i = get_array_index(array, 20);
-	printf("index 20 of 2000 equals : %i\n", *i);
+	printf("index 0 of 1999 equals : %i\n", *i);
+	i = get_array_index(array, 1);
+	printf("index 1 of 1999 equals : %i\n", *i);
+	printf("reallocating array\n");
+	realloc_array(array, 2);
+	i = get_array_index(array, 0);
+	printf("index 0 of 1 equals : %i\n", *i);
+	i = get_array_index(array, 1);
+	printf("index 1 of 1 equals : %i\n", *i);
 
 	printf("%s\n", (string = new_string("This is a string created using ezmem and returned using .tostring")).tostring);
 
@@ -53,13 +59,13 @@ int main()
 	printf("Creating custom sized array...\n");
 	array = new_array_dirty(other, 2000, sizeof(t_vec3));
 	vector = get_array_index(array, 0);
-	printf("index 0 of 2000 : %p\n", vector);
+	printf("index 0 of 1999 : %p\n", vector);
 	vector = get_array_index(array, 1);
-	printf("index 1 of 2000 : %p\n", vector);
+	printf("index 1 of 1999 : %p\n", vector);
 	vector = get_array_index(array, 2000);
-	printf("index 2000 of 2000 : %p\n", vector);
+	printf("index 2000 of 1999 : %p\n", vector);
 	vector = get_array_index(array, 40000);
-	printf("index 40000 of 2000 : %p\n", vector);
+	printf("index 40000 of 1999 : %p\n", vector);
 	printf("Cleaning again...\n");
 	destroy_array(&array);
 	return (0);

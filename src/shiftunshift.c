@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 23:19:56 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/26 00:42:49 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/26 00:45:41 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ void	array_shift(ARRAY *array)
 void	array_unshift(ARRAY *array, void *element)
 {
 	char	*head;
-	char	*tail;
 
 	array_realloc(array, array->length + 1);
 	head = array->data;
-	tail = array->data + array->total_size;
-	array->data = tail;
+	array->data = array->data + array->total_size;
 	while ((char*)array->data != head)
 	{
 		*((char*)array->data) = *((char*)array->data - array->data_size);

@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:21:55 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/23 02:01:45 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 22:05:10 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ BOOL		array_is_signed(const ARRAY array)
 	return (!(array.type & 0x100));
 }
 
-ARRAY		realloc_array(ARRAY array, UINT new_length)
+void		realloc_array(ARRAY *array, UINT new_length)
 {
-	array.length = new_length;
-	array.total_size = array.length * array.data_size + 1;
-	array.data = realloc(array.data, array.total_size);
-	((char*)array.data)[array.total_size + 1] = 0;
-	return (array);
+	array->length = new_length;
+	array->total_size = array->length * array->data_size + 1;
+	array->data = realloc(array->data, array->total_size);
+	((char*)array->data)[array->total_size + 1] = 0;
 }

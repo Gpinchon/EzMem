@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:20:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/23 01:59:08 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 22:04:31 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <data_size.h>
 #include <stdarg.h>
 
-t_array		new_array(const TYPE datatype, UINT length, ...)
+ARRAY		new_array(const TYPE datatype, UINT length, ...)
 {
-	t_array	array;
+	ARRAY	array;
 	va_list	argptr;
 
 	array.type = datatype;
@@ -39,9 +39,9 @@ t_array		new_array(const TYPE datatype, UINT length, ...)
 	return (array);
 }
 
-t_array		new_array_dirty(const TYPE datatype, UINT length, ...)
+ARRAY		new_array_dirty(const TYPE datatype, UINT length, ...)
 {
-	t_array	array;
+	ARRAY	array;
 	va_list	argptr;
 
 	array.type = datatype;
@@ -60,9 +60,9 @@ t_array		new_array_dirty(const TYPE datatype, UINT length, ...)
 	return (array);
 }
 
-t_string	new_string(const char *src)
+STRING	new_string(const char *src)
 {
-	t_string str;
+	STRING str;
 	const char	*ptr;
 	void		*data;
 

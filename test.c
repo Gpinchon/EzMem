@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/23 02:06:55 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 22:09:58 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int main()
 	i = get_array_index(array, 1);
 	printf("index 1 of 1999 equals : %i\n", *i);
 	printf("reallocating array\n");
-	realloc_array(array, 2);
+	realloc_array(&array, 2);
 	i = get_array_index(array, 0);
 	printf("index 0 of 1 equals : %i\n", *i);
 	i = get_array_index(array, 1);

@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/23 02:04:32 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 21:10:53 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef enum {
 
 typedef struct	s_array
 {
-	UCHAR		data_size;
 	TYPE		type;
+	UINT		data_size;
 	UINT		length;
 	UINT		total_size;
 	void		*data;

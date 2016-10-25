@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 23:20:20 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/26 00:12:54 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,14 @@ typedef struct	s_string
 t_array		new_array(const TYPE datatype, UINT length, ...);
 t_array		new_array_dirty(const TYPE datatype, UINT length, ...);
 t_string	new_string(const char *src);
-void		array_push(ARRAY *array, void *element);
-void		array_pop(ARRAY *array);
-void		realloc_array(ARRAY *array, UINT new_length);
-void		*get_array_index(const ARRAY array, const UINT index);
-BOOL		array_is_signed(const ARRAY array);
 void		destroy_array(ARRAY *array);
 void		destroy_string(STRING *str);
+void		array_push(ARRAY *array, void *element);
+void		array_pop(ARRAY *array);
+void		array_shift(ARRAY *array);
+void		array_unshift(ARRAY *array, void *element);
+void		array_realloc(ARRAY *array, UINT new_length);
+void		*array_get_index(const ARRAY array, const UINT index);
+BOOL		array_is_signed(const ARRAY array);
 
 #endif

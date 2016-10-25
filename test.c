@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 23:11:40 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/26 00:37:10 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ typedef struct	s_vec3
 	float		z;
 }				t_vec3;
 
+void	print_int_array(ARRAY array)
+{
+	UINT	i = 0;
+	int		*index;
+
+	while (i < array.length)
+	{
+		index = array_get_index(array, i);
+		printf("\tindex %i of %i equals : %i\n", i, array.length - 1, *index);
+		i++;
+	}
+}
+
 int main()
 {
 	ARRAY	array;
@@ -30,31 +43,40 @@ int main()
 
 	printf("Creating an array of size 2000\n");
 	array = new_array(signed_int, 2000);
-	i = get_array_index(array, 0);
-	printf("index 0 of 1999 : %p\n", i);
-	*(i) = 10;
-	i = get_array_index(array, 1);
-	printf("index 1 of 1999 : %p\n", i);
-	*(i) = 20;
-	i = get_array_index(array, 2000);
-	printf("index 2000 of 1999 : %p\n", i);
-	i = get_array_index(array, 40000);
-	printf("index 40000 of 1999 : %p\n", i);
-	i = get_array_index(array, 0);
+	i = array_get_index(array, 0);
+	printf("address 0 of 1999 : %p\n", i);
+	*(&i[0]) = 10;
+	*(&i[1]) = 20;
+	*(&i[2]) = 30;
+	*(&i[3]) = 40;
+	*(&i[4]) = 50;
+	i = array_get_index(array, 1);
+	printf("address 1 of 1999 : %p\n", i);
+	i = array_get_index(array, 2000);
+	printf("address 2000 of 1999 : %p\n", i);
+	i = array_get_index(array, 40000);
+	printf("address 40000 of 1999 : %p\n", i);
+	i = array_get_index(array, 0);
 	printf("index 0 of 1999 equals : %i\n", *i);
-	i = get_array_index(array, 1);
-	printf("index 1 of 1999 equals : %i\n", *i);
-	printf("reallocating array\n");
-	realloc_array(&array, 2);
-	i = get_array_index(array, 0);
-	printf("index 0 of 1 equals : %i\n", *i);
-	i = get_array_index(array, 1);
-	printf("index 1 of 1 equals : %i\n", *i);
+	i = array_get_index(array, 1);
+	printf("index 1 of 1999 equals : %i\nreallocating array\n", *i);
+	array_realloc(&array, 5);
+	print_int_array(array);
 	printf("pushing new value into array\n");
 	new_value = 15;
 	array_push(&array, &new_value);
-	i = get_array_index(array, 2);
-	printf("index 2 of 2 equals : %i\n", *i);
+	print_int_array(array);
+	printf("shifting array\n");
+	array_shift(&array);
+	print_int_array(array);
+	printf("popping array\n");
+	array_pop(&array);
+	print_int_array(array);
+	printf("unshifting array\n");
+	new_value = 42;
+	array_unshift(&array, &new_value);
+	print_int_array(array);
+
 
 	printf("%s\n", (string = new_string("This is a string created using ezmem and returned using .tostring")).tostring);
 
@@ -64,14 +86,14 @@ int main()
 
 	printf("Creating custom sized array...\n");
 	array = new_array_dirty(other, 2000, sizeof(t_vec3));
-	vector = get_array_index(array, 0);
+	vector = array_get_index(array, 0);
 	*(vector) = (t_vec3){1, 2, 3};
 	printf("index 0 of 1999 : %p\nvalues %f, %f, %f\n", vector, vector->x, vector->y, vector->z);
-	vector = get_array_index(array, 1);
+	vector = array_get_index(array, 1);
 	printf("index 1 of 1999 : %p\n", vector);
-	vector = get_array_index(array, 2000);
+	vector = array_get_index(array, 2000);
 	printf("index 2000 of 1999 : %p\n", vector);
-	vector = get_array_index(array, 40000);
+	vector = array_get_index(array, 40000);
 	printf("index 40000 of 1999 : %p\n", vector);
 	printf("Cleaning again...\n");
 	destroy_array(&array);

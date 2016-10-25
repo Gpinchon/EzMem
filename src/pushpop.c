@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 22:01:29 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 23:20:12 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 23:54:06 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	array_push(ARRAY *array, void *element)
 	char	*head;
 	char	*tail;
 
-	realloc_array(array, array->length + 1);
+	array_realloc(array, array->length + 1);
 	if (!element)
 		return;
 	head = array->data;
 	tail = head + array->total_size;
-	array->data = get_array_index(*array, array->length - 1);
+	array->data = array_get_index(*array, array->length - 1);
 	while (array->data != tail)
 	{
 		*((char*)array->data) = *((char*)element);
@@ -34,5 +34,5 @@ void	array_push(ARRAY *array, void *element)
 
 void	array_pop(ARRAY *array)
 {
-	realloc_array(array, array->length - 1);
+	array_realloc(array, array->length - 1);
 }

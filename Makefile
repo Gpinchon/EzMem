@@ -6,7 +6,7 @@
 #    By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 00:22:53 by gpinchon          #+#    #+#              #
-#    Updated: 2016/10/25 22:13:02 by gpinchon         ###   ########.fr        #
+#    Updated: 2016/10/25 23:31:59 by gpinchon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ TESTSRC	= test.c
 SRC		=	./src/new_arrays.c		\
 			./src/manage_arrays.c	\
 			./src/destroy_arrays.c	\
-			./src/pushpop.c
+			./src/pushpop.c			\
+			./src/shiftunshift.c
 
 OBJ		= $(SRC:.c=.o)
 CC		= gcc

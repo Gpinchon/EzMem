@@ -6,13 +6,11 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 22:01:29 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 23:09:36 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 23:20:12 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ezmem.h>
-#include <string.h>
-#include <stdio.h>
 
 void	array_push(ARRAY *array, void *element)
 {

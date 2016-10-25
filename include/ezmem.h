@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 23:12:22 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 23:20:20 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define EZMEM_H
 
 # include <stdlib.h>
+# include <string.h>
 
 # define UCHAR 		unsigned char
 # define UINT		unsigned int

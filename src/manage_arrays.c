@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:21:55 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 22:05:10 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 22:45:45 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ BOOL		array_is_signed(const ARRAY array)
 void		realloc_array(ARRAY *array, UINT new_length)
 {
 	array->length = new_length;
-	array->total_size = array->length * array->data_size + 1;
-	array->data = realloc(array->data, array->total_size);
-	((char*)array->data)[array->total_size + 1] = 0;
+	array->total_size = array->length * array->data_size;
+	array->data = realloc(array->data, array->total_size + 1);
+	((char*)array->data)[array->total_size] = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:20:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 22:04:31 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/10/25 22:46:32 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ ARRAY		new_array(const TYPE datatype, UINT length, ...)
 		array.data_size = va_arg(argptr, UINT);
 		va_end(argptr);
 	}
-	array.total_size = array.length * array.data_size + 1;
-	array.data = malloc(array.total_size);
+	array.total_size = array.length * array.data_size;
+	array.data = malloc(array.total_size + 1);
 	while (length)
 	{
-		((char*)array.data)[length * array.data_size] = 0;
+		((char*)array.data)[array.total_size] = 0;
 		length--;
 	}
 	return (array);
@@ -54,9 +54,9 @@ ARRAY		new_array_dirty(const TYPE datatype, UINT length, ...)
 		array.data_size = va_arg(argptr, UINT);
 		va_end(argptr);
 	}
-	array.total_size = array.length * array.data_size + 1;
-	array.data = malloc(array.total_size);
-	((char*)array.data)[array.total_size + 1] = 0;
+	array.total_size = array.length * array.data_size;
+	array.data = malloc(array.total_size + 1);
+	((char*)array.data)[array.total_size] = 0;
 	return (array);
 }
 

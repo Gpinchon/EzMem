@@ -1,0 +1,15 @@
+.TH man 3 "3 November 2016" "new_array man page"
+.SH NAME
+new_array \- creates a new array of the specified type and size
+.SH PROTOTYPE
+t_array new_array(const TYPE datatype, UINT length, ... [Optional type size if the data is of "other" type])
+.SH DESCRIPTION
+new_array creates a new array of the specified type and size. Unlike new_array_dirty, new_array always returns a 0 filled space. new_array_dirty is faster but be aware that the newly allocated space may contain any data.
+.SH OPTIONS
+If the data type is not an integer or floating type (a custom structure for instance), use "other" as the data type and specify its size using the variadic argument.
+.SH KNOWN ISSUES
+Creating an array of "other" type without specifying the data size may be undefined behavior.
+.SH SEEL ALSO
+new_string(3), destroy_array(3), destroy_string(3)
+.SH AUTHOR
+PINCHON Guillaume (gpinchon@student.42.fr)

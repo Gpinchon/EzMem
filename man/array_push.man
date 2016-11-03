@@ -1,0 +1,15 @@
+.TH man 3 "3 November 2016" "array_push man page"
+.SH NAME
+array_push \- pushes a new element at the end of the array
+.SH PROTOTYPE
+void array_push(ARRAY *array, void *element)
+.SH DESCRIPTION
+Pushes a new element at the end of the specified ARRAY (defined t_array). If the new element is NULL, the array is reallocated of .length+1 using array_realloc() and returned.
+.SH OPTIONS
+None.
+.SH KNOWN ISSUES
+The new element HAS to be of the same size of the elements stored inside the ARRAY. A smaller size may result in a segmentation fault or buffer overflow. And a bigger size may result in corrupted/partial data.
+.SH SEEL ALSO
+array_pop(3), array_realloc(3)
+.SH AUTHOR
+PINCHON Guillaume (gpinchon@student.42.fr)

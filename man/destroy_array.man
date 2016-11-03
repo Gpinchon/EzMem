@@ -1,0 +1,15 @@
+.TH man 3 "3 November 2016" "destroy_array man page"
+.SH NAME
+destroy_array \- destroys the specified array
+.SH PROTOTYPE
+void destroy_array(ARRAY *array)
+.SH DESCRIPTION
+Destroys the specified ARRAY (defined t_array). Before attempting to free() the functions first tries to detect if the ARRAY was allocated by checking the value of .total_size. The structure is then filled with 0.
+.SH OPTIONS
+None.
+.SH KNOWN ISSUES
+Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior and make free() fail.
+.SH SEEL ALSO
+new_array(3), new_string(3), destroy_string(3)
+.SH AUTHOR
+PINCHON Guillaume (gpinchon@student.42.fr)

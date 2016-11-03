@@ -1,0 +1,15 @@
+.TH man 3 "3 November 2016" "destroy_string man page"
+.SH NAME
+destroy_string \- destroys the specified string
+.SH PROTOTYPE
+void destroy_string(STRING *str)
+.SH DESCRIPTION
+Destroys the specified STRING (defined t_string). .data is destroyed using destroy_array(), the structure is then filled with 0.
+.SH OPTIONS
+None.
+.SH KNOWN ISSUES
+Specifying an STRING allocated on the stack without filling it first may result in undefined behavior and make free() fail.
+.SH SEEL ALSO
+new_array(3), new_string(3), destroy_array(3)
+.SH AUTHOR
+PINCHON Guillaume (gpinchon@student.42.fr)

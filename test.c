@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/26 00:37:10 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/03 15:44:32 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int main()
 	printf("index 1 of 1999 equals : %i\nreallocating array\n", *i);
 	array_realloc(&array, 5);
 	print_int_array(array);
-	printf("pushing new value into array\n");
+	printf("pushing array\n");
 	new_value = 15;
 	array_push(&array, &new_value);
 	print_int_array(array);
@@ -76,14 +76,10 @@ int main()
 	new_value = 42;
 	array_unshift(&array, &new_value);
 	print_int_array(array);
-
-
 	printf("%s\n", (string = new_string("This is a string created using ezmem and returned using .tostring")).tostring);
-
 	printf("Cleaning...\n");
 	destroy_array(&array);
 	destroy_string(&string);
-
 	printf("Creating custom sized array...\n");
 	array = new_array_dirty(other, 2000, sizeof(t_vec3));
 	vector = array_get_index(array, 0);
@@ -93,8 +89,13 @@ int main()
 	printf("index 1 of 1999 : %p\n", vector);
 	vector = array_get_index(array, 2000);
 	printf("index 2000 of 1999 : %p\n", vector);
-	vector = array_get_index(array, 40000);
-	printf("index 40000 of 1999 : %p\n", vector);
+	printf("Cleaning again...\n");
+	destroy_array(&array);
+	printf("Creating array of type 'other' with no specified size (UNDEFINED BEHAVIOR, DON'T DO THIS !!!)...\n");
+	array = new_array(other, 2000);
+	printf("array data_size : %u\n", array.data_size);
+	i = array_get_index(array, 500);
+	printf("index 500 of 1999 : %p\n", i);
 	printf("Cleaning again...\n");
 	destroy_array(&array);
 	return (0);

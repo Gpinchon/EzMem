@@ -1,0 +1,15 @@
+.TH man 3 "3 November 2016" "unshift man page"
+.SH NAME
+array_unshift -\ adds a new element at the beginning of the specified array
+.SH PROTOTYPE
+void array_unshift(ARRAY *array, void *element)
+.SH DESCRIPTION
+Adds a new element at the beginning of the specified ARRAY (defined t_array) by using array_realloc(3).
+.SH OPTIONS
+None.
+.SH KNOWN ISSUES
+Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior.
+.SH SEEL ALSO
+array_shift(3), array_realloc(3)
+.SH AUTHOR
+PINCHON Guillaume (gpinchon@student.42.fr)

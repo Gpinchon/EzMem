@@ -6,31 +6,39 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:20:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 22:46:32 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/03 16:03:53 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ezmem.h>
 #include <data_size.h>
 #include <stdarg.h>
+#include <stdio.h>
+
+static void	allocate_array(ARRAY *array, const TYPE datatype, UINT length, va_list argptr)
+{
+	if ((datatype & 0x00F) < 4)
+		array->data_size = g_datasize[(datatype & 0x0F0) >> 4][datatype & 0x00F];
+	else
+	{
+		array->data_size = va_arg(argptr, UINT);
+		va_end(argptr);
+	}
+	array->type = datatype;
+	array->length = length;
+	array->total_size = array->length * array->data_size;
+	array->data = malloc(array->total_size + 1);
+}
 
 ARRAY		new_array(const TYPE datatype, UINT length, ...)
 {
 	ARRAY	array;
 	va_list	argptr;
 
-	array.type = datatype;
-	array.length = length;
-	if ((datatype & 0x00F) < 4)
-		array.data_size = g_datasize[(datatype & 0x0F0) >> 4][datatype & 0x00F];
-	else
-	{
-		va_start(argptr, 0);
-		array.data_size = va_arg(argptr, UINT);
-		va_end(argptr);
-	}
-	array.total_size = array.length * array.data_size;
-	array.data = malloc(array.total_size + 1);
+	if ((datatype & 0x00F) >= 4)
+		va_start(argptr, length);
+	allocate_array(&array, datatype, length, argptr);
+	length = array.length;
 	while (length)
 	{
 		((char*)array.data)[array.total_size] = 0;
@@ -44,18 +52,9 @@ ARRAY		new_array_dirty(const TYPE datatype, UINT length, ...)
 	ARRAY	array;
 	va_list	argptr;
 
-	array.type = datatype;
-	array.length = length;
-	if ((datatype & 0x00F) < 4)
-		array.data_size = g_datasize[(datatype & 0x0F0) >> 4][datatype & 0x00F];
-	else
-	{
-		va_start(argptr, 0);
-		array.data_size = va_arg(argptr, UINT);
-		va_end(argptr);
-	}
-	array.total_size = array.length * array.data_size;
-	array.data = malloc(array.total_size + 1);
+	if ((datatype & 0x00F) >= 4)
+		va_start(argptr, length);
+	allocate_array(&array, datatype, length, argptr);
 	((char*)array.data)[array.total_size] = 0;
 	return (array);
 }

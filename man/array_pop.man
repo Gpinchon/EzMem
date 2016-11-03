@@ -4,13 +4,16 @@ array_pop \- removes an element at the end of the specified array
 .SH PROTOTYPE
 void array_pop(ARRAY *array)
 .SH DESCRIPTION
-Removes an element at the end of the specified ARRAY (defined t_array) by reallocating it of .length-1 using array_realloc().
+Removes an element at the end of the specified ARRAY (defined t_array) by reallocating it of .length-1 using 
+.BR array_realloc (3)
 .SH OPTIONS
 None.
 .SH KNOWN ISSUES
-Because C is strongly typed, unlike in PHP/JS array_pop() DOES NOT return the removed value as returning a pointer to a previously allocated area is unsafe and returning the value is not an option.
+Because C is strongly typed, unlike in PHP/JS 
+.BR array_pop (3)
+DOES NOT return the removed value as returning a pointer to a previously allocated area is unsafe and returning the value is not an option.
 Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior.
 .SH SEEL ALSO
-array_push(3), array_realloc(3)
+.BR array_push (3), array_realloc (3)
 .SH AUTHOR
 PINCHON Guillaume (gpinchon@student.42.fr)

@@ -1,0 +1,15 @@
+.TH man 3 "3 November 2016" "array_realloc man page"
+.SH NAME
+array_realloc -\ reallocates the specified array
+.SH PROTOTYPE
+void array_realloc(ARRAY *array, UINT new_length)
+.SH DESCRIPTION
+Reallocates the specified ARRAY (defined t_array) to the new length. All previously stored values are copied to the new array.
+.SH OPTIONS
+None.
+.SH KNOWN ISSUES
+Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior.
+.SH SEEL ALSO
+.BR new_array (3), array_destroy (3)
+.SH AUTHOR
+PINCHON Guillaume (gpinchon@student.42.fr)

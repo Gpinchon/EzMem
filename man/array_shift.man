@@ -4,13 +4,16 @@ array_shift \- removes the first element of the specified array
 .SH PROTOTYPE
 void array_shift(ARRAY *array)
 .SH DESCRIPTION
-Removes the first element of the specified ARRAY (defined t_array). and returns a freshly allocated space using array_realloc().
+Removes the first element of the specified ARRAY (defined t_array). and returns a freshly allocated space using 
+.BR array_realloc (3)
 .SH OPTIONS
 None.
 .SH KNOWN ISSUES
-Because C is strongly typed, unlike in PHP/JS array_shift() DOES NOT return the removed value as returning a pointer to a previously allocated area is unsafe and returning the value is not an option.
+Because C is strongly typed, unlike in PHP/JS
+.BR array_shift (3)
+DOES NOT return the removed value as returning a pointer to a previously allocated area is unsafe and returning the value is not an option.
 Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior.
 .SH SEEL ALSO
-array_unshift(3), array_realloc(3)
+.BR array_unshift (3), array_realloc (3)
 .SH AUTHOR
 PINCHON Guillaume (gpinchon@student.42.fr)

@@ -4,12 +4,14 @@ new_string \- creates a new string using specified source
 .SH PROTOTYPE
 t_string new_string(const char *src)
 .SH DESCRIPTION
-new_string creates and returns a new string using the char *src as the source. The source is then copied to a freshly allocated space using new_array_dirty with the signed_char type. The returned string contains a pointer to the allocated space named .tostring (basicaly a char* pointer to the allocated void*).
+Creates and returns a new string using the char *src as the source. The source is then copied to a freshly allocated space using
+.BR new_array_dirty (3)
+with the signed_char type. The returned string contains a pointer to the allocated space named .tostring (basicaly a char* pointer to the allocated void*).
 .SH OPTIONS
 None.
 .SH KNOWN ISSUES
 Directly manipulating the contained string using .tostring won't update .array and .length and could cause issues later on if the length of the string was changed.
 .SH SEEL ALSO
-new_array(3), destroy_array(3), destroy_string(3)
+.BR new_array (3), destroy_array (3), destroy_string (3)
 .SH AUTHOR
 PINCHON Guillaume (gpinchon@student.42.fr)

@@ -4,12 +4,15 @@ array_unshift -\ adds a new element at the beginning of the specified array
 .SH PROTOTYPE
 void array_unshift(ARRAY *array, void *element)
 .SH DESCRIPTION
-Adds a new element at the beginning of the specified ARRAY (defined t_array) by using array_realloc(3).
+Adds a new element at the beginning of the specified ARRAY (defined t_array) by using 
+.BR array_realloc (3)
+and then copying the new element's value.
 .SH OPTIONS
 None.
 .SH KNOWN ISSUES
+The new element HAS to be of the same size of the elements stored inside the ARRAY. A smaller size may result in a segmentation fault or buffer overflow.
 Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior.
 .SH SEEL ALSO
-array_shift(3), array_realloc(3)
+.BR array_shift (3), array_realloc (3)
 .SH AUTHOR
 PINCHON Guillaume (gpinchon@student.42.fr)

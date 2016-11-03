@@ -4,12 +4,16 @@ destroy_array \- destroys the specified array
 .SH PROTOTYPE
 void destroy_array(ARRAY *array)
 .SH DESCRIPTION
-Destroys the specified ARRAY (defined t_array). Before attempting to free() the functions first tries to detect if the ARRAY was allocated by checking the value of .total_size. The structure is then filled with 0.
+Destroys the specified ARRAY (defined t_array). Before attempting to 
+.BR free(3)
+the functions first tries to detect if the ARRAY was allocated by checking the value of .total_size. The structure is then filled with 0.
 .SH OPTIONS
 None.
 .SH KNOWN ISSUES
-Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior and make free() fail.
+Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior and make 
+.BR free (3)
+fail.
 .SH SEEL ALSO
-new_array(3), new_string(3), destroy_string(3)
+.BR new_array (3), new_string (3), destroy_string (3), free (3)
 .SH AUTHOR
 PINCHON Guillaume (gpinchon@student.42.fr)

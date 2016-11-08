@@ -21,7 +21,7 @@ SRC		=	./src/new_arrays.c		\
 
 OBJ		= $(SRC:.c=.o)
 CC		= gcc
-CFLAGS	= -g -Wall -Wextra -Wall -I ./include
+CFLAGS	= -Ofast -Wall -Wextra -Wall -I ./include
 
 $(NAME): $(OBJ) 
 	ar -rc $(NAME) $(OBJ)

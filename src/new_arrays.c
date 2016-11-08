@@ -13,7 +13,6 @@
 #include <ezmem.h>
 #include <data_size.h>
 #include <stdarg.h>
-#include <stdio.h>
 
 static void	allocate_array(ARRAY *array, const TYPE datatype, UINT length, va_list argptr)
 {

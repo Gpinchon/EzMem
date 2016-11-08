@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef DATA_SIZE_H
+# define DATA_SIZE_H
+
 UCHAR g_datasize[3][4] = (UCHAR[3][4]){
 	{sizeof(char), sizeof(int), sizeof(float), sizeof(double)},
 	{sizeof(char), sizeof(short int), sizeof(float), sizeof(double)},
 	{sizeof(char), sizeof(long int), sizeof(float), sizeof(long double)}
 };
+
+#endif

@@ -18,10 +18,10 @@
 
 # define UCHAR 		unsigned char
 # define UINT		unsigned int
-# define TYPE		e_type
-# define ARRAY		t_array
-# define STRING		t_string
-# define BOOL		e_bool
+# define TYPE		enum e_type
+# define ARRAY		struct s_array
+# define STRING		struct s_string
+# define BOOL		enum e_bool
 # define SIGNED		0x000
 # define UNSIGNED	0x100
 # define SHORT		0x010
@@ -31,10 +31,9 @@
 # define FLOAT		0x002
 # define DOUBLE		0x003
 # define OTHER		0x004
-//#define ENUM		0x006
 
-
-typedef enum {
+enum			e_type
+{
 	signed_char = SIGNED | CHAR,
 	unsigned_char = UNSIGNED | CHAR,
 	signed_short = SIGNED | SHORT | INT,
@@ -47,12 +46,13 @@ typedef enum {
 	signed_double = DOUBLE,
 	long_double = LONG | DOUBLE,
 	other = OTHER
-} e_type;
+};
 
-typedef enum {
+enum			e_bool
+{
 	false = 0,
 	true = !false
-} e_bool;
+};
 
 typedef struct	s_array
 {
@@ -67,20 +67,20 @@ typedef struct	s_string
 {
 	UINT		length;
 	char		*tostring;
-	t_array		array;
+	ARRAY		array;
 }				t_string;
 
-t_array		new_array(const TYPE datatype, UINT length, ...);
-t_array		new_array_dirty(const TYPE datatype, UINT length, ...);
-t_string	new_string(const char *src);
-void		destroy_array(ARRAY *array);
-void		destroy_string(STRING *str);
-void		array_push(ARRAY *array, void *element);
-void		array_pop(ARRAY *array);
-void		array_shift(ARRAY *array);
-void		array_unshift(ARRAY *array, void *element);
-void		array_realloc(ARRAY *array, UINT new_length);
-void		*array_get_index(const ARRAY array, const UINT index);
-BOOL		array_is_signed(const ARRAY array);
+ARRAY			new_array(const TYPE datatype, UINT length, ...);
+ARRAY			new_array_dirty(const TYPE datatype, UINT length, ...);
+STRING			new_string(const char *src);
+void			destroy_array(ARRAY *array);
+void			destroy_string(STRING *str);
+void			array_push(ARRAY *array, void *element);
+void			array_pop(ARRAY *array);
+void			array_shift(ARRAY *array);
+void			array_unshift(ARRAY *array, void *element);
+void			array_realloc(ARRAY *array, UINT new_length);
+void			*array_get_index(const ARRAY array, const UINT index);
+BOOL			array_is_signed(const ARRAY array);
 
 #endif

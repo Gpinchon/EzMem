@@ -19,7 +19,7 @@ void	array_push(ARRAY *array, void *element)
 
 	array_realloc(array, array->length + 1);
 	if (!element)
-		return;
+		return ;
 	tail = array->data + array->total_size;
 	seeker = array_get_index(*array, array->length - 1);
 	while (seeker != tail)

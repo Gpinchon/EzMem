@@ -18,7 +18,7 @@ void	array_shift(ARRAY *array)
 	char	*tail;
 
 	if (array->length <= 1)
-		return;
+		return ;
 	head = array->data;
 	tail = array->data + array->total_size;
 	while ((char*)array->data + array->data_size != tail)

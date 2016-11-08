@@ -14,22 +14,20 @@
 
 void	array_push(ARRAY *array, void *element)
 {
-	char	*head;
+	char	*seeker;
 	char	*tail;
 
 	array_realloc(array, array->length + 1);
 	if (!element)
 		return;
-	head = array->data;
-	tail = head + array->total_size;
-	array->data = array_get_index(*array, array->length - 1);
-	while (array->data != tail)
+	tail = array->data + array->total_size;
+	seeker = array_get_index(*array, array->length - 1);
+	while (seeker != tail)
 	{
-		*((char*)array->data) = *((char*)element);
+		*((char*)seeker) = *((char*)element);
 		(element)++;
-		(array->data)++;
+		(seeker)++;
 	}
-	array->data = head;
 }
 
 void	array_pop(ARRAY *array)

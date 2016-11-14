@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/14 14:42:21 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/14 15:51:59 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define UCHAR 		unsigned char
 # define UINT		unsigned int
 # define TYPE		enum e_type
+# define EZCALLBACK	void (*callback)(void *)
 # define ARRAY		struct s_ezarray
 # define STRING		struct s_ezstring
 # define BOOL		enum e_bool
@@ -81,6 +82,7 @@ void			ezarray_shift(ARRAY *ezarray);
 void			ezarray_unshift(ARRAY *ezarray, void *element);
 void			ezarray_realloc(ARRAY *ezarray, UINT new_length);
 void			*ezarray_get_index(const ARRAY ezarray, const UINT index);
+void			ezforeach(ARRAY array, EZCALLBACK);
 BOOL			ezarray_is_signed(const ARRAY ezarray);
 
 #endif

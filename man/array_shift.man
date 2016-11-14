@@ -1,19 +1,19 @@
-.TH man 3 "3 November 2016" "array_shift man page"
+.TH man 3 "3 November 2016" "ezarray_shift man page"
 .SH NAME
-array_shift \- removes the first element of the specified array
+ezarray_shift \- removes the first element of the specified ezarray
 .SH PROTOTYPE
-void array_shift(ARRAY *array)
+void ezarray_shift(ARRAY *ezarray)
 .SH DESCRIPTION
-Removes the first element of the specified ARRAY (defined t_array). and returns a freshly allocated space using 
-.BR array_realloc (3)
+Removes the first element of the specified ARRAY (defined t_ezarray). and returns a freshly allocated space using 
+.BR ezarray_realloc (3)
 .SH OPTIONS
 None.
 .SH KNOWN ISSUES
 Because C is strongly typed, unlike in PHP/JS
-.BR array_shift (3)
+.BR ezarray_shift (3)
 DOES NOT return the removed value as returning a pointer to a previously allocated area is unsafe and returning the value is not an option.
 Specifying an ARRAY allocated on the stack without filling it first may result in undefined behavior.
 .SH SEEL ALSO
-.BR array_unshift (3), array_realloc (3)
+.BR ezarray_unshift (3), ezarray_realloc (3)
 .SH AUTHOR
 PINCHON Guillaume (gpinchon@student.42.fr)

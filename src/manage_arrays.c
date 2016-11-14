@@ -6,27 +6,27 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:21:55 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/26 00:20:47 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/14 14:45:30 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ezmem.h>
 
-void		*array_get_index(const ARRAY array, const UINT index)
+void		*ezarray_get_index(const ARRAY ezarray, const UINT index)
 {
-	return (index < array.length
-		&& array.data ? array.data + index * array.data_size : NULL);
+	return (index < ezarray.length
+		&& ezarray.data ? ezarray.data + index * ezarray.data_size : NULL);
 }
 
-BOOL		array_is_signed(const ARRAY array)
+BOOL		ezarray_is_signed(const ARRAY ezarray)
 {
-	return (!(array.type & 0x100));
+	return (!(ezarray.type & 0x100));
 }
 
-void		array_realloc(ARRAY *array, UINT new_length)
+void		ezarray_realloc(ARRAY *ezarray, UINT new_length)
 {
-	array->length = new_length;
-	array->total_size = array->length * array->data_size;
-	array->data = realloc(array->data, array->total_size + 1);
-	((char*)array->data)[array->total_size] = 0;
+	ezarray->length = new_length;
+	ezarray->total_size = ezarray->length * ezarray->data_size;
+	ezarray->data = realloc(ezarray->data, ezarray->total_size + 1);
+	((char*)ezarray->data)[ezarray->total_size] = 0;
 }

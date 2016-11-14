@@ -12,16 +12,16 @@
 
 #include <ezmem.h>
 
-void	array_push(ARRAY *array, void *element)
+void	ezarray_push(ARRAY *ezarray, void *element)
 {
 	char	*seeker;
 	char	*tail;
 
-	array_realloc(array, array->length + 1);
+	ezarray_realloc(ezarray, ezarray->length + 1);
 	if (!element)
 		return ;
-	tail = array->data + array->total_size;
-	seeker = array_get_index(*array, array->length - 1);
+	tail = ezarray->data + ezarray->total_size;
+	seeker = ezarray_get_index(*ezarray, ezarray->length - 1);
 	while (seeker != tail)
 	{
 		*((char*)seeker) = *((char*)element);
@@ -30,7 +30,7 @@ void	array_push(ARRAY *array, void *element)
 	}
 }
 
-void	array_pop(ARRAY *array)
+void	ezarray_pop(ARRAY *ezarray)
 {
-	array_realloc(array, array->length - 1);
+	ezarray_realloc(ezarray, ezarray->length - 1);
 }

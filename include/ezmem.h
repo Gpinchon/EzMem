@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/26 00:12:54 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/14 14:42:21 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define UCHAR 		unsigned char
 # define UINT		unsigned int
 # define TYPE		enum e_type
-# define ARRAY		struct s_array
-# define STRING		struct s_string
+# define ARRAY		struct s_ezarray
+# define STRING		struct s_ezstring
 # define BOOL		enum e_bool
 # define SIGNED		0x000
 # define UNSIGNED	0x100
@@ -54,33 +54,33 @@ enum			e_bool
 	true = !false
 };
 
-typedef struct	s_array
+typedef struct	s_ezarray
 {
 	TYPE		type;
 	UINT		data_size;
 	UINT		length;
 	UINT		total_size;
 	void		*data;
-}				t_array;
+}				t_ezarray;
 
-typedef struct	s_string
+typedef struct	s_ezstring
 {
 	UINT		length;
 	char		*tostring;
 	ARRAY		array;
-}				t_string;
+}				t_ezstring;
 
-ARRAY			new_array(const TYPE datatype, UINT length, ...);
-ARRAY			new_array_dirty(const TYPE datatype, UINT length, ...);
-STRING			new_string(const char *src);
-void			destroy_array(ARRAY *array);
-void			destroy_string(STRING *str);
-void			array_push(ARRAY *array, void *element);
-void			array_pop(ARRAY *array);
-void			array_shift(ARRAY *array);
-void			array_unshift(ARRAY *array, void *element);
-void			array_realloc(ARRAY *array, UINT new_length);
-void			*array_get_index(const ARRAY array, const UINT index);
-BOOL			array_is_signed(const ARRAY array);
+ARRAY			new_ezarray(const TYPE datatype, UINT length, ...);
+ARRAY			new_ezarray_dirty(const TYPE datatype, UINT length, ...);
+STRING			new_ezstring(const char *src);
+void			destroy_ezarray(ARRAY *ezarray);
+void			destroy_ezstring(STRING *str);
+void			ezarray_push(ARRAY *ezarray, void *element);
+void			ezarray_pop(ARRAY *ezarray);
+void			ezarray_shift(ARRAY *ezarray);
+void			ezarray_unshift(ARRAY *ezarray, void *element);
+void			ezarray_realloc(ARRAY *ezarray, UINT new_length);
+void			*ezarray_get_index(const ARRAY ezarray, const UINT index);
+BOOL			ezarray_is_signed(const ARRAY ezarray);
 
 #endif

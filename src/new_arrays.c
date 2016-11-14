@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:20:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/03 16:03:53 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/14 14:45:36 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,51 @@
 #include <data_size.h>
 #include <stdarg.h>
 
-static void	allocate_array(ARRAY *array, const TYPE dt, UINT l, va_list argptr)
+static void	allocate_ezarray(ARRAY *ezarray, const TYPE dt, UINT l, va_list argptr)
 {
 	if ((dt & 0x00F) < 4)
-		array->data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
+		ezarray->data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
 	else
 	{
-		array->data_size = va_arg(argptr, UINT);
+		ezarray->data_size = va_arg(argptr, UINT);
 		va_end(argptr);
 	}
-	array->type = dt;
-	array->length = l;
-	array->total_size = array->length * array->data_size;
-	array->data = malloc(array->total_size + 1);
+	ezarray->type = dt;
+	ezarray->length = l;
+	ezarray->total_size = ezarray->length * ezarray->data_size;
+	ezarray->data = malloc(ezarray->total_size + 1);
 }
 
-ARRAY		new_array(const TYPE datatype, UINT length, ...)
+ARRAY		new_ezarray(const TYPE datatype, UINT length, ...)
 {
-	ARRAY	array;
+	ARRAY	ezarray;
 	va_list	argptr;
 
 	if ((datatype & 0x00F) >= 4)
 		va_start(argptr, length);
-	allocate_array(&array, datatype, length, argptr);
-	length = array.length;
+	allocate_ezarray(&ezarray, datatype, length, argptr);
+	length = ezarray.length;
 	while (length)
 	{
-		((char*)array.data)[array.total_size] = 0;
+		((char*)ezarray.data)[ezarray.total_size] = 0;
 		length--;
 	}
-	return (array);
+	return (ezarray);
 }
 
-ARRAY		new_array_dirty(const TYPE datatype, UINT length, ...)
+ARRAY		new_ezarray_dirty(const TYPE datatype, UINT length, ...)
 {
-	ARRAY	array;
+	ARRAY	ezarray;
 	va_list	argptr;
 
 	if ((datatype & 0x00F) >= 4)
 		va_start(argptr, length);
-	allocate_array(&array, datatype, length, argptr);
-	((char*)array.data)[array.total_size] = 0;
-	return (array);
+	allocate_ezarray(&ezarray, datatype, length, argptr);
+	((char*)ezarray.data)[ezarray.total_size] = 0;
+	return (ezarray);
 }
 
-STRING		new_string(const char *src)
+STRING		new_ezstring(const char *src)
 {
 	STRING		str;
 	const char	*ptr;
@@ -72,7 +72,7 @@ STRING		new_string(const char *src)
 		src++;
 	}
 	src = ptr;
-	str.array = new_array_dirty(CHAR, str.length);
+	str.array = new_ezarray_dirty(CHAR, str.length);
 	str.tostring = (char *)str.array.data;
 	data = str.array.data;
 	while (*src)

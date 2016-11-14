@@ -1,15 +1,15 @@
-.TH man 3 "3 November 2016" "array_is_signed man page"
+.TH man 3 "3 November 2016" "ezarray_is_signed man page"
 .SH NAME
-array_is_signed -\ checks if the array is signed
+ezarray_is_signed -\ checks if the ezarray is signed
 .SH PROTOTYPE
-BOOL array_is_signed(const ARRAY array)
+BOOL ezarray_is_signed(const ARRAY ezarray)
 .SH DESCRIPTION
-Tries to check if the array is signed according to .type value. For instance, 0x000 is signed_char, 0x100 is unsigned_char.
+Tries to check if the ezarray is signed according to .type value. For instance, 0x000 is signed_char, 0x100 is unsigned_char.
 .SH OPTIONS
 None.
 .SH KNOWN ISSUES
 None.
 .SH SEEL ALSO
-.BR new_array (3)
+.BR new_ezarray (3)
 .SH AUTHOR
 PINCHON Guillaume (gpinchon@student.42.fr)

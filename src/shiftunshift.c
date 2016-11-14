@@ -12,45 +12,45 @@
 
 #include <ezmem.h>
 
-void	array_shift(ARRAY *array)
+void	ezarray_shift(ARRAY *ezarray)
 {
 	char	*head;
 	char	*tail;
 
-	if (array->length <= 1)
+	if (ezarray->length <= 1)
 		return ;
-	head = array->data;
-	tail = array->data + array->total_size;
-	while ((char*)array->data + array->data_size != tail)
+	head = ezarray->data;
+	tail = ezarray->data + ezarray->total_size;
+	while ((char*)ezarray->data + ezarray->data_size != tail)
 	{
-		*((char*)array->data) = *((char*)array->data + array->data_size);
-		array->data++;
+		*((char*)ezarray->data) = *((char*)ezarray->data + ezarray->data_size);
+		ezarray->data++;
 	}
-	array->data = head;
-	array_realloc(array, array->length - 1);
+	ezarray->data = head;
+	ezarray_realloc(ezarray, ezarray->length - 1);
 }
 
-void	array_unshift(ARRAY *array, void *element)
+void	ezarray_unshift(ARRAY *ezarray, void *element)
 {
 	char	*head;
 
-	array_realloc(array, array->length + 1);
-	head = array->data;
-	array->data = array->data + array->total_size;
-	while ((char*)array->data != head)
+	ezarray_realloc(ezarray, ezarray->length + 1);
+	head = ezarray->data;
+	ezarray->data = ezarray->data + ezarray->total_size;
+	while ((char*)ezarray->data != head)
 	{
-		*((char*)array->data) = *((char*)array->data - array->data_size);
-		if (array->data - array->data_size == head)
+		*((char*)ezarray->data) = *((char*)ezarray->data - ezarray->data_size);
+		if (ezarray->data - ezarray->data_size == head)
 			break ;
-		array->data--;
+		ezarray->data--;
 	}
-	array->data = head;
+	ezarray->data = head;
 	if (element)
-		while (array->data != head + array->data_size)
+		while (ezarray->data != head + ezarray->data_size)
 		{
-			*((char*)array->data) = *((char*)element);
-			array->data++;
+			*((char*)ezarray->data) = *((char*)element);
+			ezarray->data++;
 			element++;
 		}
-	array->data = head;
+	ezarray->data = head;
 }

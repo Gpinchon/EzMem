@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/15 18:54:37 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/15 20:08:19 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ typedef struct	s_ezstring
 ARRAY			new_ezarray(const TYPE datatype, UINT length, ...);
 ARRAY			new_ezarray_dirty(const TYPE datatype, UINT length, ...);
 STRING			new_ezstring(const char *src);
-LINK			new_ezlink(const TYPE datatype, UINT length, ...);
-LINK			new_ezlink_dirty(const TYPE datatype, UINT length, ...);
+LINK			*new_ezlink(const TYPE datatype, UINT length, ...);
+LINK			*new_ezlink_dirty(const TYPE datatype, UINT length, ...);
 void			destroy_ezarray(ARRAY *ezarray);
 void			destroy_ezstring(STRING *str);
 void			destroy_ezlink(LINK *ezlink);

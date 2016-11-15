@@ -6,11 +6,12 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:20:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/15 20:23:17 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/15 20:31:26 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ezmem.h>
+#include <data_size.h>
 #include <stdarg.h>
 
 static void	allocate_ezarray(ARRAY *ezarray, const TYPE dt, UINT l, va_list argptr)

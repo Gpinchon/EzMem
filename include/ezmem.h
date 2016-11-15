@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/15 20:23:08 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/15 20:31:58 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdlib.h>
 # include <string.h>
-# include <data_size.h>
 
 # define UCHAR 		unsigned char
 # define UINT		unsigned int

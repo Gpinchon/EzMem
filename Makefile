@@ -6,7 +6,7 @@
 #    By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 00:22:53 by gpinchon          #+#    #+#              #
-#    Updated: 2016/11/14 15:46:08 by gpinchon         ###   ########.fr        #
+#    Updated: 2016/11/15 18:50:03 by gpinchon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,12 @@ NAME	= libezmem.a
 TEST	= ezmemtest
 TESTSRC	= test.c
 SRC		=	./src/new_arrays.c		\
+			./src/new_link.c		\
+			./src/append_link.c		\
 			./src/foreach.c			\
 			./src/manage_arrays.c	\
 			./src/destroy_arrays.c	\
+			./src/destroy_link.c	\
 			./src/pushpop.c			\
 			./src/shiftunshift.c
 

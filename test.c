@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/14 14:45:47 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/15 18:04:55 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int main()
 	printf("index 0 of 1999 : %p\nvalues %f, %f, %f\n", vector, vector->x, vector->y, vector->z);
 	vector = ezarray_get_index(ezarray, 1);
 	printf("index 1 of 1999 : %p\n", vector);
+	ezarray_push(&ezarray, &vector);
 	vector = ezarray_get_index(ezarray, 2000);
 	printf("index 2000 of 1999 : %p\n", vector);
 	printf("Cleaning again...\n");

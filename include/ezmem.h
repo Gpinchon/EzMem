@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/14 15:51:59 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/15 18:54:37 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define TYPE		enum e_type
 # define EZCALLBACK	void (*callback)(void *)
 # define ARRAY		struct s_ezarray
+# define LINK		struct s_ezlink
 # define STRING		struct s_ezstring
 # define BOOL		enum e_bool
 # define SIGNED		0x000
@@ -64,6 +65,13 @@ typedef struct	s_ezarray
 	void		*data;
 }				t_ezarray;
 
+typedef struct	s_ezlink
+{
+	ARRAY		data;
+	LINK		*next;
+	LINK		*prev;
+}				t_ezlink;
+
 typedef struct	s_ezstring
 {
 	UINT		length;
@@ -74,8 +82,12 @@ typedef struct	s_ezstring
 ARRAY			new_ezarray(const TYPE datatype, UINT length, ...);
 ARRAY			new_ezarray_dirty(const TYPE datatype, UINT length, ...);
 STRING			new_ezstring(const char *src);
+LINK			new_ezlink(const TYPE datatype, UINT length, ...);
+LINK			new_ezlink_dirty(const TYPE datatype, UINT length, ...);
 void			destroy_ezarray(ARRAY *ezarray);
 void			destroy_ezstring(STRING *str);
+void			destroy_ezlink(LINK *ezlink);
+void			ezlink_append(LINK *chain, LINK *element);
 void			ezarray_push(ARRAY *ezarray, void *element);
 void			ezarray_pop(ARRAY *ezarray);
 void			ezarray_shift(ARRAY *ezarray);

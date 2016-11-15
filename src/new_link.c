@@ -6,12 +6,11 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 18:31:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/15 20:09:41 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/15 20:23:11 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ezmem.h>
-#include <data_size.h>
 #include <stdarg.h>
 
 LINK		*new_ezlink(const TYPE datatype, UINT length, ...)

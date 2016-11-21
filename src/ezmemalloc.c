@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy_arrays.c                                   :+:      :+:    :+:   */
+/*   ezmemalloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/23 00:21:06 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/14 14:45:18 by gpinchon         ###   ########.fr       */
+/*   Created: 2016/11/21 11:07:41 by anonymous         #+#    #+#             */
+/*   Updated: 2016/11/21 11:15:38 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ezmem.h>
 
-void		destroy_ezarray(ARRAY *ezarray)
+void	*ezmemalloc(UINT size)
 {
-	if (ezarray->total_size)
-		free(ezarray->data);
-	*ezarray = (ARRAY){0, 0x000, 0, 0, NULL};
-}
+	char	*memptr;
 
-void		destroy_ezstring(STRING *str)
-{
-	destroy_ezarray(&str->array);
-	str->length = 0;
-	str->tostring = NULL;
+	memptr = malloc(size);
+	while (size)
+	{
+		size--;
+		memptr[size] = 0;
+	}
+	return (memptr);
 }

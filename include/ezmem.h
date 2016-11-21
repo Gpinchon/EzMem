@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ezmem.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/15 20:31:58 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/21 11:26:53 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct	s_ezarray
 
 typedef struct	s_ezlink
 {
-	ARRAY		data;
+	ARRAY		array;
 	LINK		*next;
 	LINK		*prev;
 }				t_ezlink;
@@ -87,6 +87,7 @@ LINK			*new_ezlink_dirty(const TYPE datatype, UINT length, ...);
 void			destroy_ezarray(ARRAY *ezarray);
 void			destroy_ezstring(STRING *str);
 void			destroy_ezlink(LINK *ezlink);
+void			destroy_ezchain(LINK *from);
 void			ezlink_append(LINK *chain, LINK *element);
 void			ezarray_push(ARRAY *ezarray, void *element);
 void			ezarray_pop(ARRAY *ezarray);
@@ -96,5 +97,6 @@ void			ezarray_realloc(ARRAY *ezarray, UINT new_length);
 void			*ezarray_get_index(const ARRAY ezarray, const UINT index);
 void			ezforeach(ARRAY array, EZCALLBACK);
 BOOL			ezarray_is_signed(const ARRAY ezarray);
+void			*ezmemalloc(UINT size);
 
 #endif

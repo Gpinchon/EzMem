@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/15 18:04:55 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/21 11:58:25 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	print_int_ezarray(ARRAY ezarray)
 int main()
 {
 	ARRAY	ezarray;
+	LINK	*ezlink;
 	STRING	ezstring;
 	int		*i;
 	int		new_value;
@@ -63,7 +64,7 @@ int main()
 	ezarray_realloc(&ezarray, 5);
 	print_int_ezarray(ezarray);
 	printf("pushing ezarray\n");
-	new_value = 15;
+	new_value = 60;
 	ezarray_push(&ezarray, &new_value);
 	print_int_ezarray(ezarray);
 	printf("shifting ezarray\n");
@@ -73,7 +74,7 @@ int main()
 	ezarray_pop(&ezarray);
 	print_int_ezarray(ezarray);
 	printf("unshifting ezarray\n");
-	new_value = 42;
+	new_value = 10;
 	ezarray_unshift(&ezarray, &new_value);
 	print_int_ezarray(ezarray);
 	printf("%s\n", (ezstring = new_ezstring("This is a ezstring created using ezmem and returned using .tostring")).tostring);
@@ -93,11 +94,16 @@ int main()
 	printf("Cleaning again...\n");
 	destroy_ezarray(&ezarray);
 	printf("Creating ezarray of type 'other' with no specified size (UNDEFINED BEHAVIOR, DON'T DO THIS !!!)...\n");
-	ezarray = new_ezarray(other, 2000);
+	ezarray = new_ezarray(other, 5);
 	printf("ezarray data_size : %u\n", ezarray.data_size);
-	i = ezarray_get_index(ezarray, 500);
-	printf("index 500 of 1999 : %p\n", i);
+	i = ezarray_get_index(ezarray, 4);
+	printf("index 4 of 4 : %p\n", i);
 	printf("Cleaning again...\n");
 	destroy_ezarray(&ezarray);
+	printf("Creating new ezlink...\n");
+	ezlink = new_ezlink(unsigned_int, 10);
+	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
+	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
+	destroy_ezchain(ezlink);
 	return (0);
 }

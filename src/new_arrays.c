@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_arrays.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:20:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/15 20:31:26 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/21 11:14:47 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,24 @@
 #include <data_size.h>
 #include <stdarg.h>
 
-static void	allocate_ezarray(ARRAY *ezarray, const TYPE dt, UINT l, va_list argptr)
+static void	allocate_ezarray(ARRAY *ezarray, const TYPE dt,
+	UINT l, va_list argptr)
+{
+	if ((dt & 0x00F) < 4)
+		ezarray->data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
+	else
+	{
+		ezarray->data_size = va_arg(argptr, UINT);
+		va_end(argptr);
+	}
+	ezarray->type = dt;
+	ezarray->length = l;
+	ezarray->total_size = ezarray->length * ezarray->data_size;
+	ezarray->data = ezmemalloc(ezarray->total_size + 1);
+}
+
+static void	allocate_ezarray_dirty(ARRAY *ezarray, const TYPE dt,
+	UINT l, va_list argptr)
 {
 	if ((dt & 0x00F) < 4)
 		ezarray->data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
@@ -34,15 +51,16 @@ ARRAY		new_ezarray(const TYPE datatype, UINT length, ...)
 	ARRAY	ezarray;
 	va_list	argptr;
 
+	argptr = NULL;
 	if ((datatype & 0x00F) >= 4)
 		va_start(argptr, length);
 	allocate_ezarray(&ezarray, datatype, length, argptr);
 	length = ezarray.length;
-	while (length)
+	/*while (length)
 	{
 		((char*)ezarray.data)[ezarray.total_size] = 0;
 		length--;
-	}
+	}*/
 	return (ezarray);
 }
 
@@ -51,9 +69,10 @@ ARRAY		new_ezarray_dirty(const TYPE datatype, UINT length, ...)
 	ARRAY	ezarray;
 	va_list	argptr;
 
+	argptr = NULL;
 	if ((datatype & 0x00F) >= 4)
 		va_start(argptr, length);
-	allocate_ezarray(&ezarray, datatype, length, argptr);
+	allocate_ezarray_dirty(&ezarray, datatype, length, argptr);
 	((char*)ezarray.data)[ezarray.total_size] = 0;
 	return (ezarray);
 }

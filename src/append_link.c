@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   append_link.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 18:45:14 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/15 18:56:21 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/21 11:46:52 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	ezlink_append(LINK *chain, LINK *element)
 {
-	if (chain->next)
+	if (chain && chain->next)
 		ezlink_append(chain->next, element);
-	chain->next = element;
-	element->prev = chain;
+	else if (chain && element)
+	{
+		chain->next = element;
+		element->prev = chain;
+	}
 }

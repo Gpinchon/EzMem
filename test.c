@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/21 11:58:25 by anonymous        ###   ########.fr       */
+/*   Updated: 2016/11/21 12:03:52 by anonymous        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,11 @@ int main()
 	printf("Creating new ezlink...\n");
 	ezlink = new_ezlink(unsigned_int, 10);
 	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
+	printf("Next link adress %p\n", ezlink->next);
+	destroy_ezlink(ezlink->next);
+	printf("New next link adress %p\n", ezlink->next);
 	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
+	printf("New next link adress %p\n", ezlink->next);
 	destroy_ezchain(ezlink);
 	return (0);
 }

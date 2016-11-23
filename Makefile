@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+         #
+#    By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 00:22:53 by gpinchon          #+#    #+#              #
-#    Updated: 2016/11/21 11:59:36 by anonymous        ###   ########.fr        #
+#    Updated: 2016/11/24 00:25:29 by gpinchon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC		=	./src/new_arrays.c		\
 			./src/destroy_link.c	\
 			./src/pushpop.c			\
 			./src/shiftunshift.c	\
-			./src/ezmemalloc.c
+			./src/ezmemalloc.c		\
+			./src/get_data.c
 
 OBJ		= $(SRC:.c=.o)
 CC		= gcc

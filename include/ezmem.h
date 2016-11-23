@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ezmem.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/21 11:26:53 by anonymous        ###   ########.fr       */
+/*   Updated: 2016/11/24 00:24:59 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void			destroy_ezstring(STRING *str);
 void			destroy_ezlink(LINK *ezlink);
 void			destroy_ezchain(LINK *from);
 void			ezlink_append(LINK *chain, LINK *element);
+void			*ezlink_get_data(LINK *link);
 void			ezarray_push(ARRAY *ezarray, void *element);
 void			ezarray_pop(ARRAY *ezarray);
 void			ezarray_shift(ARRAY *ezarray);

@@ -6,11 +6,13 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 00:23:35 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/24 00:25:06 by gpinchon         ###   ########.fr       */
+/*   Updated: 2016/11/24 00:30:29 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ezmem.h>
+
 void	*ezlink_get_data(LINK *link)
 {
-	return (&link->array.data[0]);
+	return (link->array.data);
 }

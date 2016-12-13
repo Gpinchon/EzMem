@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_arrays.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:20:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/21 11:14:47 by anonymous        ###   ########.fr       */
+/*   Updated: 2016/12/13 10:41:27 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,9 @@ ARRAY		new_ezarray(const TYPE datatype, UINT length, ...)
 	ARRAY	ezarray;
 	va_list	argptr;
 
-	argptr = NULL;
-	if ((datatype & 0x00F) >= 4)
-		va_start(argptr, length);
+	va_start(argptr, length);
 	allocate_ezarray(&ezarray, datatype, length, argptr);
 	length = ezarray.length;
-	/*while (length)
-	{
-		((char*)ezarray.data)[ezarray.total_size] = 0;
-		length--;
-	}*/
 	return (ezarray);
 }
 
@@ -69,9 +62,7 @@ ARRAY		new_ezarray_dirty(const TYPE datatype, UINT length, ...)
 	ARRAY	ezarray;
 	va_list	argptr;
 
-	argptr = NULL;
-	if ((datatype & 0x00F) >= 4)
-		va_start(argptr, length);
+	va_start(argptr, length);
 	allocate_ezarray_dirty(&ezarray, datatype, length, argptr);
 	((char*)ezarray.data)[ezarray.total_size] = 0;
 	return (ezarray);

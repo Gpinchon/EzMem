@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 18:31:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/21 11:59:23 by anonymous        ###   ########.fr       */
+/*   Updated: 2017/02/10 12:34:20 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ LINK		*new_ezlink_dirty(const TYPE datatype, UINT length, ...)
 	if ((datatype & 0x00F) >= 4)
 	{
 		va_start(argptr, length);
-		ezlink->array = new_ezarray_dirty(datatype, length, va_arg(argptr, UINT));
+		ezlink->array = new_ezarray_dirty(datatype, length,
+				va_arg(argptr, UINT));
 	}
 	else
 		ezlink->array = new_ezarray_dirty(datatype, length);

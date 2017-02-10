@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/24 00:24:59 by gpinchon         ###   ########.fr       */
+/*   Updated: 2017/02/10 14:26:54 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			ezarray_shift(ARRAY *ezarray);
 void			ezarray_unshift(ARRAY *ezarray, void *element);
 void			ezarray_realloc(ARRAY *ezarray, UINT new_length);
 void			*ezarray_get_index(const ARRAY ezarray, const UINT index);
-void			ezforeach(ARRAY array, EZCALLBACK);
+void			ezforeach(ARRAY array, void (*callback)(void *));
 BOOL			ezarray_is_signed(const ARRAY ezarray);
 void			*ezmemalloc(UINT size);
 

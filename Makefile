@@ -6,13 +6,13 @@
 #    By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 00:22:53 by gpinchon          #+#    #+#              #
-#    Updated: 2016/11/24 00:25:29 by gpinchon         ###   ########.fr        #
+#    Updated: 2017/02/13 18:43:48 by gpinchon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libezmem.a
 TEST	= ezmemtest
-TESTSRC	= test.c
+TESTSRC	= test
 SRC		=	./src/new_arrays.c		\
 			./src/new_link.c		\
 			./src/append_link.c		\

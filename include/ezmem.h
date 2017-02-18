@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2017/02/10 14:26:54 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/02/18 21:26:28 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define ARRAY		struct s_ezarray
 # define LINK		struct s_ezlink
 # define STRING		struct s_ezstring
-# define BOOL		enum e_bool
+# define BOOL		enum e_ezbool
 # define SIGNED		0x000
 # define UNSIGNED	0x100
 # define SHORT		0x010
@@ -50,7 +50,7 @@ enum			e_type
 	other = OTHER
 };
 
-enum			e_bool
+enum			e_ezbool
 {
 	false = 0,
 	true = !false

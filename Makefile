@@ -12,7 +12,7 @@
 
 NAME	= libezmem.a
 TEST	= ezmemtest
-TESTSRC	= test
+TESTSRC	= test.c
 SRC		=	./src/new_arrays.c		\
 			./src/new_link.c		\
 			./src/append_link.c		\
@@ -31,10 +31,14 @@ CFLAGS	= -Ofast -Wall -Wextra -Wall -I ./include
 
 $(NAME): $(OBJ) 
 	ar -rc $(NAME) $(OBJ)
-
+ifeq ($(OS), Windows_NT)
+OK_STRING=[OK]
+else
 NO_COLOR=\033[0m
 OK_COLOR=\033[32;01m
 OK_STRING=$(OK_COLOR)[OK]$(NO_COLOR)
+endif
+
 %.o: %.c
 	@echo -n Compiling $@...
 	@($(CC) $(CFLAGS) -o $@ -c $<)

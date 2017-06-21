@@ -16,41 +16,47 @@ void	ezarray_shift(ARRAY *ezarray)
 {
 	char	*head;
 	char	*tail;
+	ARRAY	locarray;
 
-	if (ezarray->length <= 1)
+	locarray = *ezarray;
+	if (locarray.length <= 1)
 		return ;
-	head = ezarray->data;
-	tail = ezarray->data + ezarray->total_size;
-	while ((char*)ezarray->data + ezarray->data_size != tail)
+	head = locarray.data;
+	tail = locarray.data + locarray.total_size;
+	while ((char*)locarray.data + locarray.data_size != tail)
 	{
-		*((char*)ezarray->data) = *((char*)ezarray->data + ezarray->data_size);
-		ezarray->data++;
+		*((char*)locarray.data) = *((char*)locarray.data + locarray.data_size);
+		locarray.data++;
 	}
-	ezarray->data = head;
+	locarray.data = head;
+	*ezarray = locarray;
 	ezarray_realloc(ezarray, ezarray->length - 1);
 }
 
 void	ezarray_unshift(ARRAY *ezarray, void *element)
 {
 	char	*head;
+	ARRAY	locarray;
 
+	locarray = *ezarray;
 	ezarray_realloc(ezarray, ezarray->length + 1);
-	head = ezarray->data;
-	ezarray->data = ezarray->data + ezarray->total_size;
-	while ((char*)ezarray->data != head)
+	head = locarray.data;
+	locarray.data = locarray.data + locarray.total_size;
+	while ((char*)locarray.data != head)
 	{
-		*((char*)ezarray->data) = *((char*)ezarray->data - ezarray->data_size);
-		if (ezarray->data - ezarray->data_size == head)
+		*((char*)locarray.data) = *((char*)locarray.data - locarray.data_size);
+		if (locarray.data - locarray.data_size == head)
 			break ;
-		ezarray->data--;
+		locarray.data--;
 	}
-	ezarray->data = head;
+	locarray.data = head;
 	if (element)
-		while (ezarray->data != head + ezarray->data_size)
+		while (locarray.data != head + locarray.data_size)
 		{
-			*((char*)ezarray->data) = *((char*)element);
-			ezarray->data++;
+			*((char*)locarray.data) = *((char*)element);
+			locarray.data++;
 			element++;
 		}
-	ezarray->data = head;
+	locarray.data = head;
+	*ezarray = locarray;
 }

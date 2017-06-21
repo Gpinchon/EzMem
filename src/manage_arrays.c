@@ -25,8 +25,12 @@ BOOL		ezarray_is_signed(const ARRAY ezarray)
 
 void		ezarray_realloc(ARRAY *ezarray, UINT new_length)
 {
-	ezarray->length = new_length;
-	ezarray->total_size = ezarray->length * ezarray->data_size;
-	ezarray->data = realloc(ezarray->data, ezarray->total_size + 1);
-	((char*)ezarray->data)[ezarray->total_size] = 0;
+	ARRAY	locarray;
+
+	locarray = *ezarray;
+	locarray.length = new_length;
+	locarray.total_size = locarray.length * locarray.data_size;
+	locarray.data = realloc(locarray.data, locarray.total_size + 1);
+	((char*)locarray.data)[locarray.total_size] = 0;
+	*ezarray = locarray;
 }

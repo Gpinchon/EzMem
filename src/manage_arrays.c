@@ -43,11 +43,13 @@ void		ezarray_resize(ARRAY *ezarray, UINT new_length)
 	locarray = *ezarray;
 	if (locarray.reserved >= new_length)
 	{
+		if (new_length < locarray.length)
+			memset(locarray.data + locarray.total_size, 0, (locarray.length - new_length) * locarray.data_size);
 		locarray.length = new_length;
 		locarray.total_size = locarray.length * locarray.data_size;
 		((char*)locarray.data)[locarray.total_size] = 0;
 		*ezarray = locarray;
-		return;
+		return ;
 	}
 	ezarray_realloc(ezarray, new_length);
 }

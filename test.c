@@ -92,13 +92,13 @@ int main()
 	i = ezarray_get_index(ezarray, 1);
 	printf("address 1 of 1999 : %p\n", i);
 	i = ezarray_get_index(ezarray, 2000);
-	printf("address 2000 of 1999 : %p\n", i);
+	printf("address 2000 of 1999 : %p (expecting NULL)\n", i);
 	i = ezarray_get_index(ezarray, 40000);
-	printf("address 40000 of 1999 : %p\n", i);
+	printf("address 40000 of 1999 : %p (expecting NULL)\n", i);
 	i = ezarray_get_index(ezarray, 0);
 	printf("index 0 of 1999 equals : %i\n", *i);
 	i = ezarray_get_index(ezarray, 1);
-	printf("index 1 of 1999 equals : %i\nreallocating ezarray\n", *i);
+	printf("index 1 of 1999 equals : %i\nReallocating ezarray\n", *i);
 	ezarray_realloc(&ezarray, 5);
 	print_int_ezarray(ezarray);
 	printf("pushing ezarray\n");
@@ -135,9 +135,9 @@ int main()
 	printf("Creating new ezlink...\n");
 	ezlink = new_ezlink(unsigned_int, 10);
 	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
-	printf("Next link adress %p\n", ezlink->next);
+	printf("Next link adress %p\nDestroying new link...\n", ezlink->next);
 	destroy_ezlink(ezlink->next);
-	printf("New next link adress %p\n", ezlink->next);
+	printf("New next link adress %p (expecting NULL)\n", ezlink->next);
 	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
 	printf("New next link adress %p\n", ezlink->next);
 	destroy_ezchain(ezlink);

@@ -30,7 +30,7 @@ void	ezarray_shift(ARRAY *ezarray)
 	}
 	locarray.data = head;
 	*ezarray = locarray;
-	ezarray_realloc(ezarray, ezarray->length - 1);
+	ezarray_resize(ezarray, ezarray->length - 1);
 }
 
 void	ezarray_unshift(ARRAY *ezarray, void *element)
@@ -38,7 +38,7 @@ void	ezarray_unshift(ARRAY *ezarray, void *element)
 	char	*head;
 	ARRAY	locarray;
 
-	ezarray_realloc(ezarray, ezarray->length + 1);
+	ezarray_resize(ezarray, ezarray->length + 1);
 	locarray = *ezarray;
 	head = locarray.data;
 	locarray.data = locarray.data + locarray.total_size;

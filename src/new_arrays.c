@@ -14,36 +14,42 @@
 #include <data_size.h>
 #include <stdarg.h>
 
-static void	allocate_ezarray(ARRAY *ezarray, const TYPE dt,
+static ARRAY	allocate_ezarray(const TYPE dt,
 	UINT l, va_list argptr)
 {
+	ARRAY ezarray;
+
 	if ((dt & 0x00F) < 4)
-		ezarray->data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
+		ezarray.data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
 	else
 	{
-		ezarray->data_size = va_arg(argptr, UINT);
+		ezarray.data_size = va_arg(argptr, UINT);
 		va_end(argptr);
 	}
-	ezarray->type = dt;
-	ezarray->length = l;
-	ezarray->total_size = ezarray->length * ezarray->data_size;
-	ezarray->data = ezmemalloc(ezarray->total_size + 1);
+	ezarray.type = dt;
+	ezarray.length = l;
+	ezarray.total_size = ezarray.length * ezarray.data_size;
+	ezarray.data = ezmemalloc(ezarray.total_size + 1);
+	return (ezarray);
 }
 
-static void	allocate_ezarray_dirty(ARRAY *ezarray, const TYPE dt,
+static ARRAY	allocate_ezarray_dirty(const TYPE dt,
 	UINT l, va_list argptr)
 {
+	ARRAY ezarray;
+
 	if ((dt & 0x00F) < 4)
-		ezarray->data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
+		ezarray.data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
 	else
 	{
-		ezarray->data_size = va_arg(argptr, UINT);
+		ezarray.data_size = va_arg(argptr, UINT);
 		va_end(argptr);
 	}
-	ezarray->type = dt;
-	ezarray->length = l;
-	ezarray->total_size = ezarray->length * ezarray->data_size;
-	ezarray->data = malloc(ezarray->total_size + 1);
+	ezarray.type = dt;
+	ezarray.length = l;
+	ezarray.total_size = ezarray.length * ezarray.data_size;
+	ezarray.data = malloc(ezarray.total_size + 1);
+	return (ezarray);
 }
 
 ARRAY		new_ezarray(const TYPE datatype, UINT length, ...)
@@ -52,7 +58,7 @@ ARRAY		new_ezarray(const TYPE datatype, UINT length, ...)
 	va_list	argptr;
 
 	va_start(argptr, length);
-	allocate_ezarray(&ezarray, datatype, length, argptr);
+	ezarray = allocate_ezarray(datatype, length, argptr);
 	length = ezarray.length;
 	return (ezarray);
 }
@@ -63,7 +69,7 @@ ARRAY		new_ezarray_dirty(const TYPE datatype, UINT length, ...)
 	va_list	argptr;
 
 	va_start(argptr, length);
-	allocate_ezarray_dirty(&ezarray, datatype, length, argptr);
+	ezarray = allocate_ezarray_dirty(datatype, length, argptr);
 	((char*)ezarray.data)[ezarray.total_size] = 0;
 	return (ezarray);
 }

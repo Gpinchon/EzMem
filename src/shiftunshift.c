@@ -38,8 +38,8 @@ void	ezarray_unshift(ARRAY *ezarray, void *element)
 	char	*head;
 	ARRAY	locarray;
 
-	locarray = *ezarray;
 	ezarray_realloc(ezarray, ezarray->length + 1);
+	locarray = *ezarray;
 	head = locarray.data;
 	locarray.data = locarray.data + locarray.total_size;
 	while ((char*)locarray.data != head)

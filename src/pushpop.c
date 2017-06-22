@@ -19,7 +19,7 @@ void	ezarray_push(ARRAY *ezarray, void *element)
 	ARRAY	locarray;
 
 	locarray = *ezarray;
-	ezarray_realloc(&locarray, locarray.length + 1);
+	ezarray_resize(&locarray, locarray.length + 1);
 	if (!element)
 		return ;
 	tail = locarray.data + locarray.total_size;
@@ -35,5 +35,5 @@ void	ezarray_push(ARRAY *ezarray, void *element)
 
 void	ezarray_pop(ARRAY *ezarray)
 {
-	ezarray_realloc(ezarray, ezarray->length - 1);
+	ezarray_resize(ezarray, ezarray->length - 1);
 }

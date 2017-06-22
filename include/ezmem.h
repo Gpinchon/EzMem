@@ -96,6 +96,7 @@ void			ezarray_pop(ARRAY *ezarray);
 void			ezarray_shift(ARRAY *ezarray);
 void			ezarray_unshift(ARRAY *ezarray, void *element);
 void			ezarray_realloc(ARRAY *ezarray, UINT new_length);
+void			ezarray_resize(ARRAY *ezarray, UINT new_length);
 void			ezarray_reserve(ARRAY *ezarray, UINT new_length);
 void			*ezarray_get_index(const ARRAY ezarray, const UINT index);
 void			ezforeach(ARRAY array, void (*callback)(void *));

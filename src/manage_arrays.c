@@ -63,6 +63,6 @@ void	ezarray_reserve(ARRAY *ezarray, UINT new_length)
 	{
 		locarray.reserved = new_length;
 		locarray.data = realloc(locarray.data, locarray.reserved * locarray.data_size + 1);
+		*ezarray = locarray;
 	}
-	*ezarray = locarray;
 }

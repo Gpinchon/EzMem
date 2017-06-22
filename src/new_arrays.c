@@ -28,6 +28,7 @@ static ARRAY	allocate_ezarray(const TYPE dt,
 	}
 	ezarray.type = dt;
 	ezarray.length = l;
+	ezarray.reserved = ezarray.length;
 	ezarray.total_size = ezarray.length * ezarray.data_size;
 	ezarray.data = ezmemalloc(ezarray.total_size + 1);
 	return (ezarray);
@@ -47,6 +48,7 @@ static ARRAY	allocate_ezarray_dirty(const TYPE dt,
 	}
 	ezarray.type = dt;
 	ezarray.length = l;
+	ezarray.reserved = ezarray.length;
 	ezarray.total_size = ezarray.length * ezarray.data_size;
 	ezarray.data = malloc(ezarray.total_size + 1);
 	return (ezarray);

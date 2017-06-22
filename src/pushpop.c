@@ -16,18 +16,21 @@ void	ezarray_push(ARRAY *ezarray, void *element)
 {
 	char	*seeker;
 	char	*tail;
+	ARRAY	locarray;
 
-	ezarray_realloc(ezarray, ezarray->length + 1);
+	locarray = *ezarray;
+	ezarray_realloc(&locarray, locarray.length + 1);
 	if (!element)
 		return ;
-	tail = ezarray->data + ezarray->total_size;
-	seeker = ezarray_get_index(*ezarray, ezarray->length - 1);
+	tail = locarray.data + locarray.total_size;
+	seeker = ezarray_get_index(locarray, locarray.length - 1);
 	while (seeker != tail)
 	{
 		*((char*)seeker) = *((char*)element);
 		(element)++;
 		(seeker)++;
 	}
+	*ezarray = locarray;
 }
 
 void	ezarray_pop(ARRAY *ezarray)

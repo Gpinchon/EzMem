@@ -28,9 +28,31 @@ void		ezarray_realloc(ARRAY *ezarray, UINT new_length)
 	ARRAY	locarray;
 
 	locarray = *ezarray;
+	if (locarray.reserved >= new_length)
+	{
+		locarray.length = new_length;
+		locarray.total_size = locarray.length * locarray.data_size;
+		((char*)locarray.data)[locarray.total_size] = 0;
+		*ezarray = locarray;
+		return;
+	}
 	locarray.length = new_length;
+	locarray.reserved = new_length;
 	locarray.total_size = locarray.length * locarray.data_size;
 	locarray.data = realloc(locarray.data, locarray.total_size + 1);
 	((char*)locarray.data)[locarray.total_size] = 0;
+	*ezarray = locarray;
+}
+
+void	ezarray_reserve(ARRAY *ezarray, UINT new_length)
+{
+	ARRAY	locarray;
+
+	locarray = *ezarray;
+	if (locarray.reserved < new_length)
+	{
+		locarray.reserved = new_length;
+		locarray.data = realloc(locarray.data, locarray.reserved * locarray.data_size + 1);
+	}
 	*ezarray = locarray;
 }

@@ -16,7 +16,7 @@ void		destroy_ezarray(ARRAY *ezarray)
 {
 	if (ezarray->data)
 		free(ezarray->data);
-	*ezarray = (ARRAY){0, 0x000, 0, 0, NULL};
+	memset(ezarray, 0, sizeof(ARRAY));
 }
 
 void		destroy_ezstring(STRING *str)

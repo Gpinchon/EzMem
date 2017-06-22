@@ -34,7 +34,26 @@ void	print_int_ezarray(ARRAY ezarray)
 	}
 }
 
-clock_t	performance_test(unsigned operation_count)
+clock_t	performance_test_reserve(unsigned operation_count)
+{
+	unsigned	i;
+	ARRAY		ezarray;
+	clock_t		start;
+
+	i = 0;
+	ezarray = new_ezarray(UNSIGNED|INT, 0);
+	ezarray_reserve(&ezarray, operation_count);
+	start = clock();
+	while (i < operation_count)
+	{
+		ezarray_push(&ezarray, &i);
+		i++;
+	}
+	destroy_ezarray(&ezarray);
+	return (clock() - start);
+}
+
+clock_t	performance_test_woreserve(unsigned operation_count)
 {
 	unsigned	i;
 	ARRAY		ezarray;
@@ -122,7 +141,9 @@ int main()
 	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
 	printf("New next link adress %p\n", ezlink->next);
 	destroy_ezchain(ezlink);
-	printf("Performance test, pushing 1.000.000 values to unsigned int array...\n");
-	printf("Time elapsed : %li milliseconds.\n", performance_test(1000000) * 1000 / CLOCKS_PER_SEC % 1000);
+	printf("Performance test with reserve, pushing 1.000.000 values to unsigned int array...\n");
+	printf("Time elapsed : %li milliseconds.\n", performance_test_reserve(1000000) * 1000 / CLOCKS_PER_SEC % 1000);
+	printf("Performance test without reserve, pushing 1.000.000 values to unsigned int array...\n");
+	printf("Time elapsed : %li milliseconds.\n", performance_test_woreserve(1000000) * 1000 / CLOCKS_PER_SEC % 1000);
 	return (0);
 }

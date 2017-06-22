@@ -61,6 +61,7 @@ typedef struct	s_ezarray
 	TYPE		type;
 	UINT		data_size;
 	UINT		length;
+	UINT		reserved;
 	UINT		total_size;
 	void		*data;
 }				t_ezarray;
@@ -95,6 +96,7 @@ void			ezarray_pop(ARRAY *ezarray);
 void			ezarray_shift(ARRAY *ezarray);
 void			ezarray_unshift(ARRAY *ezarray, void *element);
 void			ezarray_realloc(ARRAY *ezarray, UINT new_length);
+void			ezarray_reserve(ARRAY *ezarray, UINT new_length);
 void			*ezarray_get_index(const ARRAY ezarray, const UINT index);
 void			ezforeach(ARRAY array, void (*callback)(void *));
 BOOL			ezarray_is_signed(const ARRAY ezarray);

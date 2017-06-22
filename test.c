@@ -12,6 +12,7 @@
 
 #include <ezmem.h>
 #include <stdio.h>
+#include <time.h>
 
 typedef struct	s_vec3
 {
@@ -31,6 +32,24 @@ void	print_int_ezarray(ARRAY ezarray)
 		printf("\tindex %i of %i equals : %i\n", i, ezarray.length - 1, *index);
 		i++;
 	}
+}
+
+clock_t	performance_test(unsigned operation_count)
+{
+	unsigned	i;
+	ARRAY		ezarray;
+	clock_t		start;
+
+	i = 0;
+	ezarray = new_ezarray(UNSIGNED|INT, 0);
+	start = clock();
+	while (i < operation_count)
+	{
+		ezarray_push(&ezarray, &i);
+		i++;
+	}
+	destroy_ezarray(&ezarray);
+	return (clock() - start);
 }
 
 int main()
@@ -93,13 +112,7 @@ int main()
 	printf("index 2000 of 1999 : %p\n", vector);
 	printf("Cleaning again...\n");
 	destroy_ezarray(&ezarray);
-	printf("Creating ezarray of type 'other' with no specified size (UNDEFINED BEHAVIOR, DON'T DO THIS !!!)...\n");
-	ezarray = new_ezarray(other, 5);
-	printf("ezarray data_size : %u\n", ezarray.data_size);
-	i = ezarray_get_index(ezarray, 4);
-	printf("index 4 of 4 : %p\n", i);
-	printf("Cleaning again...\n");
-	destroy_ezarray(&ezarray);
+	printf("Creating ezarray of type 'other' with no specified size... Kidding, DON'T DO THAT !\n");
 	printf("Creating new ezlink...\n");
 	ezlink = new_ezlink(unsigned_int, 10);
 	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
@@ -109,5 +122,7 @@ int main()
 	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
 	printf("New next link adress %p\n", ezlink->next);
 	destroy_ezchain(ezlink);
+	printf("Performance test, pushing 1.000.000 values to unsigned int array...\n");
+	printf("Time elapsed : %li milliseconds.\n", performance_test(1000000) * 1000 / CLOCKS_PER_SEC % 1000);
 	return (0);
 }

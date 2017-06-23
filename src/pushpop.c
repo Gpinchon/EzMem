@@ -12,30 +12,12 @@
 
 #include <ezmem.h>
 
-static inline void	ezarray_resize_pushpop(ARRAY *ezarray, UINT new_length)
-{
-	ARRAY	locarray;
-
-	locarray = *ezarray;
-	if (locarray.length == new_length)
-		return ;
-	if (locarray.reserved >= new_length)
-	{
-		locarray.length = new_length;
-		locarray.total_size = locarray.length * locarray.data_size;
-		((char*)locarray.data)[locarray.total_size] = 0;
-		*ezarray = locarray;
-		return ;
-	}
-	ezarray_realloc(ezarray, new_length);
-}
-
 void	ezarray_push(ARRAY *ezarray, void *element)
 {
 	ARRAY	locarray;
 
 	locarray = *ezarray;
-	ezarray_resize_pushpop(&locarray, locarray.length + 1);
+	ezarray_resize_dirty(&locarray, locarray.length + 1);
 	if (!element)
 		return ;
 	memmove(locarray.data + (locarray.length - 1) * locarray.data_size,
@@ -45,5 +27,5 @@ void	ezarray_push(ARRAY *ezarray, void *element)
 
 void	ezarray_pop(ARRAY *ezarray)
 {
-	ezarray_resize_pushpop(ezarray, ezarray->length - 1);
+	ezarray_resize_dirty(ezarray, ezarray->length - 1);
 }

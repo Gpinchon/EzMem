@@ -12,25 +12,6 @@
 
 #include <ezmem.h>
 
-static inline void	ezarray_resize_shiftunshift(ARRAY *ezarray,
-	UINT new_length)
-{
-	ARRAY	locarray;
-
-	locarray = *ezarray;
-	if (locarray.length == new_length)
-		return ;
-	if (locarray.reserved >= new_length)
-	{
-		locarray.length = new_length;
-		locarray.total_size = locarray.length * locarray.data_size;
-		((char*)locarray.data)[locarray.total_size] = 0;
-		*ezarray = locarray;
-		return ;
-	}
-	ezarray_realloc(ezarray, new_length);
-}
-
 void	ezarray_shift(ARRAY *ezarray)
 {
 	char	*head;
@@ -49,7 +30,7 @@ void	ezarray_shift(ARRAY *ezarray)
 	}
 	locarray.data = head;
 	*ezarray = locarray;
-	ezarray_resize_shiftunshift(ezarray, ezarray->length - 1);
+	ezarray_resize_dirty(ezarray, ezarray->length - 1);
 }
 
 void	ezarray_unshift(ARRAY *ezarray, void *element)
@@ -57,7 +38,7 @@ void	ezarray_unshift(ARRAY *ezarray, void *element)
 	char	*head;
 	ARRAY	locarray;
 
-	ezarray_resize_shiftunshift(ezarray, ezarray->length + 1);
+	ezarray_resize_dirty(ezarray, ezarray->length + 1);
 	locarray = *ezarray;
 	head = locarray.data;
 	locarray.data = locarray.data + locarray.total_size;

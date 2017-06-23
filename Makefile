@@ -25,12 +25,11 @@ SRC		=	./src/new_arrays.c		\
 			./src/ezmemalloc.c		\
 			./src/get_data.c
 
-OBJ		= $(SRC:.c=.o)
+#OBJ		= $(SRC:.c=.o)
+OBJ 	= final.o
 CC		= gcc
 CFLAGS	= -Ofast -Wall -Wextra -Wall -I ./include
 
-$(NAME): $(OBJ) 
-	ar -rc $(NAME) $(OBJ)
 ifeq ($(OS), Windows_NT)
 OK_STRING=[OK]
 else
@@ -39,9 +38,18 @@ OK_COLOR=\033[32;01m
 OK_STRING=$(OK_COLOR)[OK]$(NO_COLOR)
 endif
 
-%.o: %.c
+$(NAME): $(OBJ) 
+	ar -rc $(NAME) $(OBJ)
+
+%.o: %.hyper
 	@echo -n Compiling $@...
-	@($(CC) $(CFLAGS) -o $@ -c $<)
+	@($(CC) -x c $(CFLAGS) -o $@ -c $<)
+	@echo "$(OK_STRING)"
+
+.INTERMEDIATE: final.hyper
+final.hyper: $(SRC)
+	@echo -n Generating $@...
+	@(cat $^ > final.hyper)
 	@echo "$(OK_STRING)"
 
 all: $(NAME)

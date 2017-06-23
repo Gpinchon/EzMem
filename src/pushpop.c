@@ -32,22 +32,14 @@ static inline void	ezarray_resize_pushpop(ARRAY *ezarray, UINT new_length)
 
 void	ezarray_push(ARRAY *ezarray, void *element)
 {
-	char	*seeker;
-	char	*tail;
 	ARRAY	locarray;
 
 	locarray = *ezarray;
 	ezarray_resize_pushpop(&locarray, locarray.length + 1);
 	if (!element)
 		return ;
-	tail = locarray.data + locarray.total_size;
-	seeker = ezarray_get_index(locarray, locarray.length - 1);
-	while (seeker != tail)
-	{
-		*((char*)seeker) = *((char*)element);
-		(element)++;
-		(seeker)++;
-	}
+	memmove(locarray.data + (locarray.length - 1) * locarray.data_size,
+		element, locarray.data_size);
 	*ezarray = locarray;
 }
 

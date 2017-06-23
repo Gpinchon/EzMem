@@ -12,39 +12,37 @@
 
 #include <ezmem.h>
 
-void		*ezarray_get_index(const ARRAY ezarray, const UINT index)
+void	*ezarray_get_index(const ARRAY ezarray, const UINT index)
 {
 	return (index < ezarray.length
 		&& ezarray.data ? ezarray.data + index * ezarray.data_size : NULL);
 }
 
-BOOL		ezarray_is_signed(const ARRAY ezarray)
+BOOL	ezarray_is_signed(const ARRAY ezarray)
 {
 	return (!(ezarray.type & 0x100));
 }
 
-void		ezarray_realloc(ARRAY *ezarray, UINT new_length)
+void	ezarray_shrink(ARRAY *ezarray)
 {
 	ARRAY	locarray;
 
 	locarray = *ezarray;
-	locarray.length = new_length;
-	locarray.reserved = new_length;
-	locarray.total_size = locarray.length * locarray.data_size;
-	locarray.data = realloc(locarray.data, locarray.total_size + 1);
-	((char*)locarray.data)[locarray.total_size] = 0;
-	*ezarray = locarray;
+	if (locarray.length < locarray.reserved)
+		ezarray_realloc(ezarray, locarray.length);
 }
 
-void		ezarray_resize(ARRAY *ezarray, UINT new_length)
+void	ezarray_resize(ARRAY *ezarray, UINT new_length)
 {
 	ARRAY	locarray;
 
 	locarray = *ezarray;
+	if (locarray.length == new_length)
+		return ;
 	if (locarray.reserved >= new_length)
 	{
-		if (new_length < locarray.length)
-			memset(locarray.data + locarray.total_size, 0, (locarray.length - new_length) * locarray.data_size);
+		if (new_length > locarray.length)
+			memset(locarray.data + locarray.total_size, 0, (new_length - locarray.length)* locarray.data_size);
 		locarray.length = new_length;
 		locarray.total_size = locarray.length * locarray.data_size;
 		((char*)locarray.data)[locarray.total_size] = 0;
@@ -54,15 +52,20 @@ void		ezarray_resize(ARRAY *ezarray, UINT new_length)
 	ezarray_realloc(ezarray, new_length);
 }
 
-void	ezarray_reserve(ARRAY *ezarray, UINT new_length)
+void	ezarray_resize_dirty(ARRAY *ezarray, UINT new_length)
 {
 	ARRAY	locarray;
 
 	locarray = *ezarray;
-	if (locarray.reserved < new_length)
+	if (locarray.length == new_length)
+		return ;
+	if (locarray.reserved >= new_length)
 	{
-		locarray.reserved = new_length;
-		locarray.data = realloc(locarray.data, locarray.reserved * locarray.data_size + 1);
+		locarray.length = new_length;
+		locarray.total_size = locarray.length * locarray.data_size;
+		((char*)locarray.data)[locarray.total_size] = 0;
 		*ezarray = locarray;
+		return ;
 	}
+	ezarray_realloc(ezarray, new_length);
 }

@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2017/02/18 21:26:28 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/03/10 00:44:16 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define FLOAT		0x002
 # define DOUBLE		0x003
 # define OTHER		0x004
+# define FASTPUSH	2
 
 enum			e_type
 {

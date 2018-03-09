@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 22:01:29 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/25 23:54:06 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/03/10 00:42:22 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static inline void	ezarray_resize_pushpop(ARRAY *ezarray, UINT new_length)
 	locarray = *ezarray;
 	if (locarray.length == new_length)
 		return ;
-	if (locarray.reserved >= new_length)
+	if (locarray.reserved > new_length)
 	{
 		locarray.length = new_length;
 		locarray.total_size = locarray.length * locarray.data_size;
@@ -27,7 +27,8 @@ static inline void	ezarray_resize_pushpop(ARRAY *ezarray, UINT new_length)
 		*ezarray = locarray;
 		return ;
 	}
-	ezarray_realloc(ezarray, new_length);
+	ezarray_reserve(ezarray, new_length * FASTPUSH);
+	ezarray_resize(ezarray, new_length);
 }
 
 void	ezarray_push(ARRAY *ezarray, void *element)

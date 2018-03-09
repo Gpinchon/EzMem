@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/21 12:03:52 by anonymous        ###   ########.fr       */
+/*   Updated: 2018/03/10 00:44:01 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ int main()
 	ezlink_append(ezlink, new_ezlink(unsigned_char, 100));
 	printf("New next link adress %p\n", ezlink->next);
 	destroy_ezchain(ezlink);
-	printf("Performance test with reserve, pushing 1.000.000 values to unsigned int array...\n");
-	printf("Time elapsed : %li milliseconds.\n", performance_test_reserve(1000000) * 1000 / CLOCKS_PER_SEC % 1000);
-	printf("Performance test without reserve, pushing 1.000.000 values to unsigned int array...\n");
-	printf("Time elapsed : %li milliseconds.\n", performance_test_woreserve(1000000) * 1000 / CLOCKS_PER_SEC % 1000);
+	printf("Performance test with reserve, pushing 50.000.000 values to unsigned int array...\n");
+	printf("Time elapsed : %li milliseconds.\n", performance_test_reserve(50000000));
+	printf("Performance test without reserve, pushing 50.000.000 values to unsigned int array...\n");
+	printf("Time elapsed : %li milliseconds.\n", performance_test_woreserve(50000000));
 	return (0);
 }

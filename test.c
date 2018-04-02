@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2018/03/10 00:44:01 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/02 12:52:20 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ int main()
 	printf("address 1 of 1999 : %p\n", i);
 	i = ezarray_get_index(ezarray, 2000);
 	printf("address 2000 of 1999 : %p (expecting NULL)\n", i);
-	i = ezarray_get_index(ezarray, 40000);
-	printf("address 40000 of 1999 : %p (expecting NULL)\n", i);
 	i = ezarray_get_index(ezarray, 0);
 	printf("index 0 of 1999 equals : %i\n", *i);
 	i = ezarray_get_index(ezarray, 1);

@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:20:43 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/12/13 10:41:27 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/02 12:51:24 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static ARRAY	allocate_ezarray(const TYPE dt,
 	UINT l, va_list argptr)
 {
-	ARRAY ezarray;
+	ARRAY	ezarray;
 
 	if ((dt & 0x00F) < 4)
 		ezarray.data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
@@ -37,7 +37,7 @@ static ARRAY	allocate_ezarray(const TYPE dt,
 static ARRAY	allocate_ezarray_dirty(const TYPE dt,
 	UINT l, va_list argptr)
 {
-	ARRAY ezarray;
+	ARRAY	ezarray;
 
 	if ((dt & 0x00F) < 4)
 		ezarray.data_size = g_datasize[(dt & 0x0F0) >> 4][dt & 0x00F];
@@ -54,7 +54,7 @@ static ARRAY	allocate_ezarray_dirty(const TYPE dt,
 	return (ezarray);
 }
 
-ARRAY		new_ezarray(const TYPE datatype, UINT length, ...)
+ARRAY			new_ezarray(const TYPE datatype, UINT length, ...)
 {
 	ARRAY	ezarray;
 	va_list	argptr;
@@ -65,7 +65,7 @@ ARRAY		new_ezarray(const TYPE datatype, UINT length, ...)
 	return (ezarray);
 }
 
-ARRAY		new_ezarray_dirty(const TYPE datatype, UINT length, ...)
+ARRAY			new_ezarray_dirty(const TYPE datatype, UINT length, ...)
 {
 	ARRAY	ezarray;
 	va_list	argptr;
@@ -76,7 +76,7 @@ ARRAY		new_ezarray_dirty(const TYPE datatype, UINT length, ...)
 	return (ezarray);
 }
 
-STRING		new_ezstring(const char *src)
+STRING			new_ezstring(const char *src)
 {
 	STRING		str;
 	const char	*ptr;

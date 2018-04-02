@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:21:55 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/11/14 14:45:30 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/02 12:50:15 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	ezarray_resize(ARRAY *ezarray, UINT new_length)
 	if (locarray.reserved >= new_length)
 	{
 		if (new_length > locarray.length)
-			memset(locarray.data + locarray.total_size, 0, (new_length - locarray.length)* locarray.data_size);
+			memset(locarray.data + locarray.total_size, 0,
+				(new_length - locarray.length) * locarray.data_size);
 		locarray.length = new_length;
 		locarray.total_size = locarray.length * locarray.data_size;
 		((char*)locarray.data)[locarray.total_size] = 0;

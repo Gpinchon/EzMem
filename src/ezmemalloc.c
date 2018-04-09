@@ -6,13 +6,13 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 11:07:41 by gpinchon          #+#    #+#             */
-/*   Updated: 2017/02/19 00:01:53 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/02 12:49:19 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ezmem.h>
 
-void		ezarray_realloc(ARRAY *ezarray, UINT new_length)
+void	ezarray_realloc(ARRAY *ezarray, UINT new_length)
 {
 	ARRAY	locarray;
 
@@ -39,7 +39,6 @@ void	*ezmemalloc(UINT size)
 	return (memptr);
 }
 
-
 void	ezarray_reserve(ARRAY *ezarray, UINT new_length)
 {
 	ARRAY	locarray;
@@ -48,7 +47,8 @@ void	ezarray_reserve(ARRAY *ezarray, UINT new_length)
 	if (locarray.reserved < new_length)
 	{
 		locarray.reserved = new_length;
-		locarray.data = realloc(locarray.data, locarray.reserved * locarray.data_size + 1);
+		locarray.data = realloc(locarray.data,
+			locarray.reserved * locarray.data_size + 1);
 		*ezarray = locarray;
 	}
 }

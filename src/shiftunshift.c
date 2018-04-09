@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 23:19:56 by gpinchon          #+#    #+#             */
-/*   Updated: 2016/10/26 00:45:41 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/02 12:50:33 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static inline void	ezarray_resize_shiftunshift(ARRAY *ezarray,
 	ezarray_realloc(ezarray, new_length);
 }
 
-void	ezarray_shift(ARRAY *ezarray)
+void				ezarray_shift(ARRAY *ezarray)
 {
 	char	*head;
 	char	*tail;
@@ -52,7 +52,7 @@ void	ezarray_shift(ARRAY *ezarray)
 	ezarray_resize_shiftunshift(ezarray, ezarray->length - 1);
 }
 
-void	ezarray_unshift(ARRAY *ezarray, void *element)
+void				ezarray_unshift(ARRAY *ezarray, void *element)
 {
 	char	*head;
 	ARRAY	locarray;

@@ -6,7 +6,7 @@
 #    By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 00:22:53 by gpinchon          #+#    #+#              #
-#    Updated: 2018/04/02 12:57:09 by gpinchon         ###   ########.fr        #
+#    Updated: 2018/04/09 17:32:42 by gpinchon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC		=	./src/new_arrays.c		\
 			./src/new_link.c		\
 			./src/append_link.c		\
 			./src/foreach.c			\
+			./src/erase.c			\
 			./src/manage_arrays.c	\
 			./src/destroy_arrays.c	\
 			./src/destroy_link.c	\

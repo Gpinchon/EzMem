@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:16:20 by gpinchon          #+#    #+#             */
-/*   Updated: 2018/03/10 00:44:16 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:32:50 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void			destroy_ezlink(LINK *ezlink);
 void			destroy_ezchain(LINK *from);
 void			ezlink_append(LINK *chain, LINK *element);
 void			*ezlink_get_data(LINK *link);
+void			ezarray_erase(ARRAY *ezarray, UINT from, UINT to);
+void			ezarray_erase_one(ARRAY *ezarray, UINT erase);
 void			ezarray_push(ARRAY *ezarray, void *element);
 void			ezarray_pop(ARRAY *ezarray);
 void			ezarray_shift(ARRAY *ezarray);

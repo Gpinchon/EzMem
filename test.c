@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/23 00:41:03 by gpinchon          #+#    #+#             */
-/*   Updated: 2018/03/10 00:44:01 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:29:10 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,9 @@ int main()
 	printf("unshifting ezarray\n");
 	new_value = 10;
 	ezarray_unshift(&ezarray, &new_value);
+	print_int_ezarray(ezarray);
+	printf("erasing elements 1 tot 3\n");
+	ezarray_erase(&ezarray, 1, 3);
 	print_int_ezarray(ezarray);
 	printf("%s\n", (ezstring = new_ezstring("This is a ezstring created using ezmem and returned using .tostring")).tostring);
 	printf("Cleaning...\n");

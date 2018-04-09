@@ -6,12 +6,11 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:34:11 by gpinchon          #+#    #+#             */
-/*   Updated: 2018/04/09 17:32:26 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/09 17:37:56 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ezmem.h>
-#include <stdio.h>
 
 void		ezarray_erase(ARRAY *ezarray, UINT from, UINT to)
 {

@@ -6,7 +6,7 @@
 /*   By: gpinchon <gpinchon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:34:11 by gpinchon          #+#    #+#             */
-/*   Updated: 2018/04/09 17:37:56 by gpinchon         ###   ########.fr       */
+/*   Updated: 2018/04/16 19:10:04 by gpinchon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,16 @@ void		ezarray_erase(ARRAY *ezarray, UINT from, UINT to)
 
 void		ezarray_erase_one(ARRAY *ezarray, UINT erase)
 {
+	void	*from_it;
+	void	*to_it;
+
 	if (erase + 1 >= ezarray->length)
 	{
 		ezarray->length--;
 		return ;
 	}
-	void	*from_it = ezarray_get_index(*ezarray, erase);
-	void	*to_it = ezarray_get_index(*ezarray, erase + 1);
+	from_it = ezarray_get_index(*ezarray, erase);
+	to_it = ezarray_get_index(*ezarray, erase + 1);
 	memcpy(from_it, to_it, ezarray->data_size);
 	ezarray->length--;
 }
